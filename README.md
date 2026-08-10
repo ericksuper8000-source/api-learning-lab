@@ -3,7 +3,7 @@
 > From a single HTTP request to a row in PostgreSQL — build a complete, documented FastAPI REST API (an IT Assets Inventory), tested and quality-gated by a Continuous Integration pipeline. No Docker, no server, no magic: **understanding before coding.**
 
 **Type:** Practical learning project + professional portfolio
-**Duration:** ~10–14 weeks total (5 h/week — 1 h/day, Mon–Fri)
+**Duration:** ~10–14 weeks total (5 h/week —- 1 h/day, Mon–Fri)
 **Language:** English (public documentation)
 
 ---
