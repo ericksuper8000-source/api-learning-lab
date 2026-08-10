@@ -30,19 +30,18 @@ stages — it tells you exactly where the project is and what to do next.
 
 > **This block is updated at the end of every session.**
 
-- **Current phase:** Phase 0 — Planning & Documentation Architecture
-- **Current stage / task:** Phase 0 — create the documentation architecture (this plan,
-  AGENTS.md, memory files) — done; **next: repo bootstrap**
+- **Current phase:** Phase 0 — Planning & Documentation Architecture ✅ (architecture + repo bootstrap done)
+- **Current stage / task:** Phase 0 complete — **next: Phase 1 — API Fundamentals (Stage 01)**
 - **Phases 1–5:** ⬜ Pending
-- **Last completed item:** Full documentation architecture created (this plan, AGENTS.md,
-  specification, roadmap, ADRs, stages)
-- **Daily recap status:** Protocol defined in `AGENTS.md` — runs from the next session
-- **Next session target:** Phase 0 — bootstrap the repository: create `C:\API-Learning-Lab`,
-  `git init` (branches `master` + `develop`), create GitHub + GitLab `api-learning-lab`
-  repos, configure remotes, first push to both
+- **Last completed item:** Repo bootstrap (Fase 0): `C:\API-Learning-Lab` created, `git init`
+  con ramas `main` + `develop`, repos `api-learning-lab` creados en GitHub y GitLab, remotos
+  configurados, primer push a **ambos** remotos ✅; SSH configurado (sin contraseña por push)
+- **Daily recap status:** Protocol defined in `AGENTS.md` — starts with Phase 1 technical content
+- **Next session target:** Phase 1 — Session 01: What is an API? The request journey mental
+  model (no code)
 - **Blockers / open questions:** None recorded
-- **Last session:** 2026-08-04 — created the full memory/documentation architecture
-- **Last commit / push:** See `docs/session-log.md` (repo lives in `C:\API-Learning-Lab`)
+- **Last session:** 2026-08-10 — repo bootstrap + SSH auth completed
+- **Last commit / push:** `main` + `develop` pushed to GitHub ✅ GitLab ✅ (via SSH, no password)
 
 ---
 
@@ -53,7 +52,7 @@ stages — it tells you exactly where the project is and what to do next.
 | Project | ☒ In progress |
 | Plan | ☒ Defined |
 | Zero-cost policy | ☒ Active (ADR-0004) |
-| Version control | ☐ Pending bootstrap (Phase 0) |
+| Version control | ☒ Live (repo `C:\API-Learning-Lab`, ramas `main` + `develop`) |
 | Application (FastAPI) | ⬜ Not started (Phase 1) |
 | Database (PostgreSQL) | ⬜ Not started (Phase 3) |
 | Code quality | ⬜ Not started (Phase 4) |
@@ -86,17 +85,19 @@ stages — it tells you exactly where the project is and what to do next.
 - [x] Decide in-memory store first, PostgreSQL when the need is real (see ADR-0006)
 - [x] Define the daily recap & validation ritual
 
-### Repo bootstrap (next sessions)
+### Repo bootstrap (completed 2026-08-10)
 
-- [ ] Create the local repository `C:\API-Learning-Lab`
-- [ ] `git init` with branches `master` (stable) + `develop` (integration)
-- [ ] Create GitHub repo `api-learning-lab` (ericksuper8000-source)
-- [ ] Create GitLab repo `api-learning-lab` (ericksuper80-group)
-- [ ] Configure both remotes and verify `git remote -v`
-- [ ] Add `.gitignore` and the memory files, first commit, push to **both** remotes
-- [ ] Verify both repositories are in sync
+- [x] Create the local repository `C:\API-Learning-Lab`
+- [x] `git init` with branches `main` (stable) + `develop` (integration)
+- [x] Create GitHub repo `api-learning-lab` (ericksuper8000-source)
+- [x] Create GitLab repo `api-learning-lab` (ericksuper80-group)
+- [x] Configure both remotes and verify `git remote -v`
+- [x] Add `.gitignore` and the memory files, first commit, push to **both** remotes
+- [x] Verify both repositories are in sync
+- [x] SSH auth configured (ssh-agent + claves cargadas + `core.sshCommand`) — no password on push
+- [x] Push a `origin` en ambos destinos (GitHub + GitLab) con `git push origin <rama>`
 
-**Status:** 🔄 IN PROGRESS (architecture done — repo bootstrap remains)
+**Status:** ✅ COMPLETE (Phase 0 done — same flow as CICD reference: `main` estable + `develop` integración)
 
 ---
 
