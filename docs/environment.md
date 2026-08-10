@@ -32,7 +32,7 @@ assume a verified baseline instead of unknown state.
 
 | Path | Role |
 |---|---|
-| `C:\API-Learning-Lab` | **The real repository** — code + tests + CI + all project files. Lives here (to be created in Phase 0). |
+| `C:\API-Learning-Lab` | **The real repository** — live (2026-08-10): initialized `git init`, branches `main` (estable) + `develop` (integración), pushed to GitHub + GitLab. Code + tests + CI will live here. |
 | `C:\Users\XPC\Desktop\FastApi - Project` | **Memory/planning folder** — documentation, session log, execution plan. Kept in sync with `C:\API-Learning-Lab`. |
 | `C:\FastAPI\vtasks` | Prior practice environment (venv, Python 3.14) with `ProyectoFastAPI1/2`. Reference only — not the repo. |
 | `C:\Repo2` + `Desktop\CICD - BORRADOR` | The CI/CD Pipeline Labs project — this API is handed off to it in Phase 5. |
@@ -59,7 +59,15 @@ C:\API-Learning-Lab\
 └── .git/
 ```
 
-Branches: `master` (stable) and `develop` (integration) — same strategy as the CICD project.
+Branches: `main` (stable) and `develop` (integration) — same strategy as the CICD project.
+`origin` tiene dos push URLs (GitHub + GitLab), así que `git push origin <rama>` publica en ambas.
+
+### SSH authentication (2026-08-10)
+
+- Service Windows `ssh-agent` → `Running` / `Automatic`.
+- Keys: `~/.ssh/id_ed25519` (GitHub) y `~/.ssh/id_ed25519_gitlab` (GitLab), cargadas con `ssh-add`.
+- `git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"` — Git Bash usa el agente de Windows.
+- Verify: `ssh -T git@github.com` · `ssh -T git@gitlab.com`
 
 ## PostgreSQL (local, Phase 3)
 
@@ -103,4 +111,5 @@ By the end of this setup, the following are **not assumed** — they are verifie
 - [ ] `C:\API-Learning-Lab` created and initialized with `master` + `develop`.
 - [ ] Both remotes configured and first push done.
 - [ ] GitHub + GitLab `api-learning-lab` repos created and in sync.
-- [ ] Memory folder created and synced with `C:\API-Learning-Lab`.
+- [x] Memory folder created and synced with `C:\API-Learning-Lab`.
+- [x] SSH auth configured (sin contraseña en los pushes).

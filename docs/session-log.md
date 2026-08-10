@@ -49,6 +49,55 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 
 ---
 
+## 2026-08-10 — Session 01 (Repo Bootstrap + SSH Auth)
+
+**Phase / Stage:** Phase 0 — Planning · Repo bootstrap & SSH authentication
+
+**Daily recap (start of day):** N/A — first session with technical work; recap protocol
+clarified with the student (recap covers technical content worked the previous day, not
+memory-file trivia). Starts applying from Phase 1.
+
+**Worked on:**
+- Created `C:\API-Learning-Lab`, `git init` with branches `main` + `develop`.
+- Copied the memory/documentation files into the repo, first commit, created the
+  `api-learning-lab` repos on GitHub + GitLab, configured remotes, first push to both.
+- Set up SSH auth so pushes no longer ask for a password: enabled the Windows `ssh-agent`
+  service (startup Automatic), loaded both keys with `ssh-add`, and made Git Bash use
+  Windows OpenSSH via `git config --global core.sshCommand`.
+- Added a multi-push remote strategy: `origin` has two push URLs (GitHub + GitLab), so
+  `git push origin <branch>` sends to both platforms.
+- Updated the docs regarding folder names: corrected every reference to `FAST API - BORRADOR`
+  → the real `FastApi - Project`, and excluded `INSTRUCCIONES...` from the repo `.gitignore`
+  (internal-only material, per ADR-0005).
+
+**Concepts learned / reinforced:**
+- Git Bash ships its own SSH which ignores the Windows agent → `core.sshCommand` fixes it.
+- A remote can hold multiple push URLs → one push reaches mirrored platforms.
+- Branches need a first commit to be real; `git push -u` records tracking.
+
+**Commands / tools used:**
+- `Set-Service ssh-agent -StartupType Automatic` + `Start-Service ssh-agent` — enable agent
+- `ssh-add` — load keys into agent
+- `ssh -T git@github.com` / `git@gitlab.com` — verify auth
+- `git remote set-url --add --push origin <url>` — multi-push to GitHub + GitLab
+- `git push -u origin/... + git push -u gitlab/...` — publish branches
+
+**Errors encountered:**
+- `Enter passphrase ... Permission denied (publickey)` from Git Bash → Git Bash not using the
+  Windows agent → resolved with `core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"`.
+- (Earlier) `LF would be replaced by CRLF` blocked a commit → resolved in the workflow of
+  Session 01; noted for future stages.
+
+**Questions still open:**
+- None.
+
+**Next session (target):**
+- Phase 1 — Session 01: What is an API? The request journey mental model (no code).
+
+**Commit / push:** `main` + `develop` → GitHub ✅ GitLab ✅ (push done during session).
+
+---
+
 ## 2026-08-04 — Session 00 (Documentation Architecture)
 
 **Phase / Stage:** Phase 0 — Planning · Created the memory/documentation architecture
