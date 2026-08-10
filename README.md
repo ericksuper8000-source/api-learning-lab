@@ -3,7 +3,7 @@
 > From a single HTTP request to a row in PostgreSQL — build a complete, documented FastAPI REST API (an IT Assets Inventory), tested and quality-gated by a Continuous Integration pipeline. No Docker, no server, no magic: **understanding before coding.**
 
 **Type:** Practical learning project + professional portfolio
-**Duration:** ~10–14 weeks total (5 h/week - 1 h/day, Mon–Fri)
+**Duration:** ~10–14 weeks total (5 h/week — 1 h/day, Mon–Fri)
 **Language:** English (public documentation)
 
 ---
@@ -110,8 +110,8 @@ GitHub, GitLab, and local execution. Nothing is paid, nothing is provisioned in 
 
 | Phase | Topic | Status |
 |---|---|---|
-| 0 | Planning & Documentation Architecture | 🔄 Current |
-| 1 | API Fundamentals | ⬜ Pending |
+| 0 | Planning & Documentation Architecture | ✅ Complete (repo bootstrapped + SSH auth) |
+| 1 | API Fundamentals | 🔄 Next |
 | 2 | Real Project — IT Assets Inventory CRUD | ⬜ Pending |
 | 3 | PostgreSQL Persistence | ⬜ Pending |
 | 4 | Code Quality & CI | ⬜ Pending |
@@ -144,9 +144,9 @@ GitHub, GitLab, and local execution. Nothing is paid, nothing is provisioned in 
 ## First Steps
 
 1. Read [`docs/execution-plan.md`](docs/execution-plan.md) → **Current Status**.
-2. Complete the **Phase 0 repo bootstrap**: create `C:\API-Learning-Lab`, the GitHub and
-   GitLab `api-learning-lab` repositories, and make the first push.
-3. Begin **Stage 01 — API Fundamentals** ([`docs/stages/stage-01-api-fundamentals.md`](docs/stages/stage-01-api-fundamentals.md)).
+2. ✅ **Phase 0 repo bootstrap complete** (`C:\API-Learning-Lab` live, GitHub + GitLab
+   repos `api-learning-lab`, SSH auth working — no password on push).
+3. Next: **Stage 01 — API Fundamentals** ([`docs/stages/stage-01-api-fundamentals.md`](docs/stages/stage-01-api-fundamentals.md)).
 
 ---
 
