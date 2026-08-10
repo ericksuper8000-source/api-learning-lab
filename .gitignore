@@ -1,0 +1,32 @@
+# Local / planning-only material (not part of the public repo)
+_archive/
+INSTRUCCIONES SESION DIARIA - IA.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# Sensitive or local-only material
+*.key
+*.pem
+.env
+.env.*
+!.env.example
+!*.example
+
+# Local database state / logs
+*.log
