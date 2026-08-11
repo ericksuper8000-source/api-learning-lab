@@ -58,11 +58,11 @@ cannot diagnose why a request fails in production.
 
 ### Session 01 — What is an API? The request journey (no code)
 
-- [ ] Explain (with the mentor, no code): what an API is and why a company would expose one
-- [ ] Draw the journey: Client → HTTP → Uvicorn → FastAPI → response
-- [ ] Identify every layer in the drawing and what it is responsible for
-- [ ] Compare: a webpage request vs an API request (JSON vs HTML)
-- [ ] Write the mental model in the Report
+- [x] Explain (with the mentor, no code): what an API is and why a company would expose one
+- [x] Draw the journey: Client → HTTP → Uvicorn → FastAPI → response
+- [x] Identify every layer in the drawing and what it is responsible for
+- [x] Compare: a webpage request vs an API request (JSON vs HTML)
+- [x] Write the mental model in the Report (drafted in `Respuesta.txt`, Desktop — pending final transfer)
 
 ### Session 02 — HTTP: methods, status codes, request anatomy
 
@@ -178,38 +178,98 @@ cannot diagnose why a request fails in production.
 
 ### What I did
 
+- Session 01 — What is an API? The request journey (no code).
+- Built the mental model of the request journey: Client → HTTP → Uvicorn → FastAPI → response.
+- Compared a webpage request vs an API request (HTML vs JSON, `Accept` header).
+- Understood HTTP status codes and why the first digit matters.
+- Drafted the answers to the Mentor Questions (see below) — based on my own words, validated with the mentor.
+
 ### How it works / why
 
-(Your answers to the Mentor Questions.)
+(My answers to the Mentor Questions, in my own words.)
+
+1. **What is an API, and what problem does it solve?**
+   An API is the **contract between the client and the server** that defines the rules of
+   communication between the two. It solves the problem of two programs needing to exchange
+   data: it tells the client *what requests are available* and *how to make them*, without
+   exposing how the server does the work.
+
+2. **Walk through what happens between the browser sending `GET /items/1` and the response arriving.**
+   The client (browser/program) writes an HTTP note with a method (`GET`) and a URL
+   (`/items/1`). The note travels to Uvicorn, the "doorman", who receives it **without
+   reading it** and passes it to FastAPI. FastAPI reads the method + URL combination, finds
+   the matching function in the application, executes it, and produces the response (JSON).
+   The response goes back through Uvicorn, who returns it to the client **without reviewing
+   it** — like a desk clerk who passes the slip to the librarian and back without reading it.
+
+3. **What does Uvicorn do, and what does FastAPI do? Why do you need both?**
+   Uvicorn is the doorman: it listens for raw HTTP and forwards it, and returns the response.
+   It decides nothing. FastAPI is the receptionist: it reads the note, validates the
+   method + URL, routes to the right function, and builds the response. You need both because
+   receiving/forwarding traffic (Uvicorn) and understanding/routing requests (FastAPI) are
+   two separate jobs — keeping them separate is what makes the API clean and debuggable.
+
+4. **What is the difference between a path parameter and a query parameter?**
+   *(Covered in a later session — pending answer.)*
+
+5. **When do you use a request body instead of parameters in the URL?**
+   *(Covered in a later session — pending answer.)*
+
+6. **What does Pydantic do? Why does invalid data produce a `422`?**
+   *(Covered in a later session — pending answer.)*
+
+7. **What do `200`, `201`, `204`, `404`, and `422` mean, and when would you return each?**
+   A status code is the contract's signature: it tells the client the outcome **without
+   reading the body**. The first digit is the category:
+   - **2** = everything went well (e.g., `200` = OK).
+   - **4** = the server is fine but the client's request had an error (e.g., `404` = the
+     resource does not exist).
+   - **5** = the problem is on the server side.
+   Sending a wrong code (e.g., `200` when the request could not be fulfilled) breaks the
+   contract because both parties agreed on what each code means.
+   *(Specific codes `201`, `204`, `422` are covered in detail in later sessions.)*
+
+8. **How does Swagger generate its documentation? Why can't it go out of date?**
+   *(Covered in a later session — pending answer.)*
 
 ### Commands I used
 
+No commands — this was a no-code concept session.
+
 | Command | Why I used it |
 |---|---|
-| `py -3.11 -m venv .venv` | Create an isolated environment with the project-standard Python |
-| `pip install -r requirements.txt` | Install the pinned dependencies |
-| `uvicorn main:app --reload` | Run the API; reload on code changes |
-| `requests.get('http://127.0.0.1:8000/...')` | Exercise the API from a real client |
-| … | … |
+| *(None)* | Concept session: mental model only, first session of Phase 1 |
 
 ### Problems encountered
 
 | Problem | Investigation | Solution |
 |---|---|---|
-| … | … | … |
+| I initially placed the API "inside" the journey drawing as if it were a communication layer | I reviewed the library/catalog analogy with the mentor | The API is the **contract/menu**, not a layer: the client and the server both consult it before talking |
+| I struggled with "webpage vs API" — I thought there was no difference | We compared who asks (browser vs program) and what comes back (HTML vs JSON) | Same journey, different passenger and different luggage: selected by the `Accept` header |
+| I said the client "discovers" the method+URL on the spot | Mentor clarification | The method + URL are already written in the menu; the client reads that line and copies it into the note |
 
 ### Lessons learned / self-explanation
 
-> Write 5–10 sentences explaining what an API is **now that you understand it**. If you
-> can explain the journey to a friend, you understood the stage.
+An API is a contract. It does not transmit anything: it defines what operations exist and
+their rules — like a library catalog. The client reads the catalog, picks a method + URL,
+writes an HTTP note in a universal format, and hands it to the doorman (Uvicorn), who passes
+it without reading it. The receptionist (FastAPI) reads the method + URL, finds the matching
+function, executes it, and sends the JSON response back through Uvicorn to the client. What
+confused me at first is that the API never appears "inside" the journey — it is the shared
+knowledge both sides consult before they talk. Status codes are the contract's signature: the
+first digit tells you if it went well (2), if the client made a mistake (4), or if the server
+failed (5). A webpage request and an API request use the same road and the same building; the
+difference is who asks (browser vs program) and what they get (HTML vs JSON), chosen via the
+`Accept` header. Now I can explain the whole journey to a friend.
 
 ### Evidence
 
-- [ ] Screenshots saved in `screenshots/stage-01/` (e.g., `01-swagger-list.png`, `02-requests-script.png`)
-- [ ] ADR written (if a decision was made)
-- [ ] Session log entry appended
-- [ ] Execution plan updated
-- [ ] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab
+- [x] Answers drafted by the student (`Respuesta.txt` → transferred here by the mentor)
+- [x] Session log entry appended (2026-08-11)
+- [x] Execution plan updated (Session 01 marked complete)
+- [ ] Screenshots saved in `screenshots/stage-01/` (e.g., `01-swagger-list.png`, `02-requests-script.png`) — pending (no code yet)
+- [ ] ADR written (if a decision was made) — none this session
+- [ ] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab — pending end-of-day push
 
 > 🚀 **Next:** Stage 02 — Real Project: turn the mini API into the structured IT Assets
 > Inventory with a full CRUD.

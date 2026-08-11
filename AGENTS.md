@@ -75,7 +75,31 @@ Every day the student sits down with the project, the session **must begin** wit
 recap mini-session. This is non-negotiable: it is the mechanism that guarantees the
 student is *actually learning* — not just following steps.
 
-### Part 1 — Simple summary
+### Time budget (fixed — 15 minutes max)
+
+The recap is **time-boxed to 15 minutes**, so a 1-hour session keeps ~45 minutes for
+real progress. The mentor roughly measures:
+
+| Min | Block |
+|---|---|
+| 0–2 | Part 1 — Detailed summary (from day one to today, technical focus) |
+| 2–12 | Part 2 — Question round (maximum 3 questions) |
+| 12–15 | Part 3 — Gate + deck update |
+
+### Recap scope (explicit)
+
+The recap covers **only the technical syllabus of this project** — APIs, HTTP, FastAPI,
+Pydantic, Uvicorn, Swagger, SQL/PostgreSQL, `requests`, and everything that communicates
+with FastAPI/PostgreSQL. It **does not** cover tools the student already masters from
+another project (Git, GitHub, GitLab, SSH, agent/key setup). It also skips memory-file
+trivia. If no syllabus material has been learned yet, the recap is skipped and the
+session advances directly.
+
+### Part 1 — Detailed summary
+
+The mentor gives a **detailed summary from day one to today**: what the project is, what
+has been built so far, and where we stand right now — focused on the technical syllabus,
+in the simplest possible language.
 
 The mentor summarizes the whole journey so far in the **simplest possible language**
 (no jargon that has not been learned). It is a short story: where we started, what we
@@ -87,26 +111,35 @@ The mentor asks questions that cover **commands, decisions, and processes** from
 completed work. Hard rules:
 
 - **Exactly one question at a time.** Never two, never a list.
+- **Hard cap: maximum 3 questions per day** (typically 2 fresh + 1 spaced repetition).
+  If time runs out before weak spots are resolved, those questions go to the **deck**
+  and are retried on later sessions — never expanded today.
+- Distribution (spaced repetition):
+  - 2 questions cover the **most recent 1–2 sessions** (commands, decisions, processes).
+  - 1 question covers **older material**, so nothing decays.
+  - The stage's **Mentor Questions** are spread across its sessions — never all at once.
+    Before any checkpoint, every Mentor Question has been asked at least once (guaranteed
+    by the deck, not by cramming).
 - The mentor waits for the student's answer and **analyzes it**: is it technically
   correct? Does it show understanding or memorization?
 - If satisfactory → brief confirmation, then the next question.
-- If weak or memorized → the mentor explains the gap **first**, then asks a rephrased
-  follow-up to confirm the learning landed.
-- Questions focus on the **most recent 1–2 stages**, plus 1–2 questions from older
-  material (spaced repetition) so nothing decays.
-- The round ends when weak spots are resolved or a natural time limit is reached.
+- If weak or memorized → the mentor explains the gap **first**, then asks one short
+  rephrased follow-up to confirm the learning landed.
 
 ### Part 3 — Gate
 
 - Recap passes → proceed to the progress session.
 - Gaps remain → the day's "progress" is **reinforcement**: revisit the weak topic, do
-  not advance. Understanding gates progress (Incremental Learning Rule).
+  not advance. Understanding gates progress (Incremental Learning Rule). Uncovered gaps
+  are queued in the deck, never abandoned.
 
-### Logging
+### Logging + the deck
 
 The recap result is recorded in the day's `session-log.md` entry (passed ✅ / areas to
-reinforce ⚠️). This keeps the AI's memory honest and lets future recaps target weak
-points.
+reinforce ⚠️). The entry **also records the deck**: every question that was skipped or
+left weak becomes a pending item for future sessions. Because each new session starts
+with a fresh AI, this queue is the only way the mentor can resume memory next day —
+without it, the spaced-repetition system cannot work.
 
 ---
 
