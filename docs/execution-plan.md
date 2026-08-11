@@ -30,18 +30,15 @@ stages — it tells you exactly where the project is and what to do next.
 
 > **This block is updated at the end of every session.**
 
-- **Current phase:** Phase 0 — Planning & Documentation Architecture ✅ (architecture + repo bootstrap done)
-- **Current stage / task:** Phase 0 complete — **next: Phase 1 — API Fundamentals (Stage 01)**
-- **Phases 1–5:** ⬜ Pending
-- **Last completed item:** Repo bootstrap (Fase 0): `C:\API-Learning-Lab` created, `git init`
-  con ramas `main` + `develop`, repos `api-learning-lab` creados en GitHub y GitLab, remotos
-  configurados, primer push a **ambos** remotos ✅; SSH configurado (sin contraseña por push)
-- **Daily recap status:** Protocol defined in `AGENTS.md` — starts with Phase 1 technical content
-- **Next session target:** Phase 1 — Session 01: What is an API? The request journey mental
-  model (no code)
-- **Blockers / open questions:** None recorded
-- **Last session:** 2026-08-10 — repo bootstrap + SSH auth completed
-- **Last commit / push:** `main` + `develop` pushed to GitHub ✅ GitLab ✅ (via SSH, no password)
+- **Current phase:** Phase 1 — API Fundamentals 🔄 (in progress)
+- **Current stage / task:** Stage 01 — Session 01 complete: What is an API? The request journey mental model (no code). **Next: Session 02 — HTTP: methods, status codes, request/response anatomy**
+- **Phases 2–5:** ⬜ Pending
+- **Last completed item:** Phase 1 — Session 01 (what is an API, the request journey, 4 roles, status codes, webpage vs API) ✅
+- **Daily recap status:** Protocol refined 2026-08-11 — recap covers ONLY the technical syllabus (API/HTTP/FastAPI/PostgreSQL/etc.), never Git/SSH (from the other project). See `AGENTS.md`.
+- **Next session target:** Stage 01 — Session 02: HTTP — methods, status codes, request/response anatomy
+- **Blockers / open questions:** Student's Report answers drafted in `Respuesta.txt` (Desktop) — pending transfer to the stage-01 Report.
+- **Last session:** 2026-08-11 — Phase 1, Session 01 (API fundamentals, no code)
+- **Last commit / push:** pending end-of-day (student task); last pushed: 2026-08-10 (bootstrap)
 
 ---
 
@@ -109,7 +106,7 @@ stages — it tells you exactly where the project is and what to do next.
 
 **Stage document:** [`stages/stage-01-api-fundamentals.md`](stages/stage-01-api-fundamentals.md)
 
-- [ ] Session 01 — What is an API? The request journey mental model (no code)
+- [x] Session 01 — What is an API? The request journey mental model (no code)
 - [ ] Session 02 — HTTP: methods, status codes, request/response anatomy
 - [ ] Session 03 — Environment: venv, install fastapi + uvicorn + requests, first app, run it
 - [ ] Session 04 — GET endpoints + path parameters
@@ -238,12 +235,16 @@ stages — it tells you exactly where the project is and what to do next.
 
 ## Session Workflow
 
-**Daily recap mini-session (before anything else, every day):**
+**Daily recap mini-session (before anything else, every day — 15 minutes max):**
 
-1. The mentor gives the simple summary of the journey so far.
-2. Question round: **one question at a time** (commands, decisions, processes).
-3. Gate: pass → progress; gaps → reinforcement, no new material.
-4. Result recorded in `session-log.md` (passed ✅ / reinforce ⚠️).
+1. Simple summary of the journey so far (~2 min).
+2. Question round: **maximum 3 questions, one at a time** (commands, decisions,
+   processes — 2 recent + 1 spaced repetition) (~10 min). The stage's Mentor Questions
+   are spread across sessions, never asked all at once.
+3. Gate: pass → progress; gaps → reinforcement, no new material; pending/weak
+   questions are queued to the deck (~3 min).
+4. Result recorded in `session-log.md` (passed ✅ / reinforce ⚠️), **plus the deck** of
+   pending questions so the next session can resume the queue.
 
 **Start of the progress session (10 min):**
 
