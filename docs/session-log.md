@@ -22,6 +22,9 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 **Daily recap (start of day):**
 - Passed ✅ / Areas to reinforce ⚠️: <what was asked and how it went>
 
+**Deck (pending questions for next sessions):**
+- <pending question 1> · <pending question 2> (or "None")
+
 **Worked on:**
 - <what was done this session>
 
@@ -43,9 +46,56 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 **Commit / push:** `docs(stage-00): ...` — pushed to GitHub ✅ GitLab ✅
 ```
 
+> **Recap budget:** max 15 minutes (2-min summary + 10-min questions + 3-min gate).
+> Max **3 questions/day** (typically 2 fresh + 1 spaced repetition). The stage's Mentor
+> Questions are distributed across sessions, never asked all at once. Weak/skipped
+> questions go to the **Deck** line above so the next session resumes the queue.
+
 ---
 
 ## Entries
+
+---
+
+## 2026-08-11 — Session 02 (Phase 1 · Session 01 — What is an API?)
+
+**Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 01 (What is an API? The request journey — no code)
+
+**Daily recap (start of day):**
+- Passed ✅ — no technical syllabus existed yet (recap protocol refined: covers ONLY the
+  technical syllabus — API/HTTP/FastAPI/PostgreSQL — never Git/SSH from the other project).
+
+**Deck (pending questions for next sessions):**
+- Cabeceras de la nota HTTP (`Host` = a qué dirección; `Accept` = qué formato quiere la respuesta).
+- Pendiente de ver en sesiones futuras: POST + cuerpo, códigos de estado en detalle (201, 204, 404, 422).
+
+**Worked on:**
+- Built the full mental model of the request journey: Client → HTTP → Uvicorn → FastAPI → response.
+- Clarified that the API is the **contract/menu**, not a layer of the journey.
+- Explained the 4 roles with real-life analogies (library: catalog, request slip, desk clerk, librarian).
+- Status codes: first digit = category (2 success / 4 client error / 5 server error); codes are a contract.
+- Webpage vs API request: `Accept: text/html` (human) vs `Accept: application/json` (program); `Host` header.
+- Recap scope rule written into `AGENTS.md` (technical syllabus only).
+
+**Concepts learned / reinforced:**
+- An API is a contract: it defines what operations exist and their rules; it is not a communication layer.
+- Uvicorn receives and forwards without understanding; FastAPI routes on method + URL and executes.
+- HTTP note anatomy: first line = method + URL; below = headers (`Host`, `Accept`).
+- A status code lets the client know the outcome without reading the body.
+
+**Commands / tools used:**
+- None (no code — concept session).
+
+**Errors encountered:**
+- None.
+
+**Questions still open:**
+- The student drafted the Report answers in `Respuesta.txt` (Desktop); pending transfer to the stage-01 Report section.
+
+**Next session (target):**
+- Stage 01 — Session 02: HTTP — methods, status codes, request/response anatomy.
+
+**Commit / push:** Pending end-of-day (student task) — `main`/`develop` not yet pushed today.
 
 ---
 
