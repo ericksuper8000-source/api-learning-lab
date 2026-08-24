@@ -2,7 +2,7 @@
 
 > **Phase:** Phase 1 — API Fundamentals
 > **Estimated duration:** ~2.5 weeks (12 sessions)
-> **Status:** ⬜ Pending
+> **Status:** 🔄 In progress
 > **Prerequisites:** Phase 0 complete (plan + repos bootstrapped: `C:\API-Learning-Lab`
 > pushed to GitHub and GitLab). This stage is **concept-first**: we build the mental model
 > before the first endpoint.
@@ -66,31 +66,31 @@ cannot diagnose why a request fails in production.
 
 ### Session 02 — HTTP: methods, status codes, request anatomy
 
-- [ ] Explain what a method (GET, POST, PUT, DELETE) means and when each is used
-- [ ] Explain the anatomy of a request: method, URL, headers, body
-- [ ] Explain the anatomy of a response: status code, headers, body
-- [ ] Read the meaning of 200, 201, 204, 404, 422, 500 (and why they matter)
-- [ ] Practice: identify the method/URL/status in a few made-up examples
+- [x] Explain what a method (GET, POST, PUT, DELETE) means and when each is used
+- [x] Explain the anatomy of a request: method, URL, headers, body
+- [x] Explain the anatomy of a response: status code, headers, body
+- [x] Read the meaning of 200, 201, 204, 404, 422, 500 (and why they matter)
+- [x] Practice: identify the method/URL/status in a few made-up examples
 
 ### Session 03 — Environment + first app
 
-- [ ] Create the venv: `py -3.11 -m venv .venv` inside `C:\API-Learning-Lab` (why: isolated deps)
-- [ ] Activate it and verify `python --version` is 3.11
-- [ ] Create `requirements.txt` with `fastapi` and `uvicorn` (why: reproducible deps)
-- [ ] Install: `pip install -r requirements.txt` (why: one command installs everything)
-- [ ] Write the first `main.py`: `app = FastAPI()` + `@app.get("/")` returning a message
-- [ ] Run it: `uvicorn main:app --reload` (why: `--reload` restarts on changes)
-- [ ] Open `http://127.0.0.1:8000/` and `http://127.0.0.1:8000/docs` (Swagger appears — already!)
-- [ ] Verify the journey: your browser (client) → HTTP → Uvicorn → FastAPI → response
+- [x] Create the venv: `py -3.11 -m venv .venv` inside `C:\API-Learning-Lab` (why: isolated deps)
+- [x] Activate it and verify `python --version` is 3.11
+- [x] Create `requirements.txt` with `fastapi` and `uvicorn` (why: reproducible deps)
+- [x] Install: `pip install -r requirements.txt` (why: one command installs everything)
+- [x] Write the first `main.py`: `app = FastAPI()` + `@app.get("/")` returning a message
+- [x] Run it: `uvicorn main:app --reload` (why: `--reload` restarts on changes)
+- [x] Open `http://127.0.0.1:8000/` and `http://127.0.0.1:8000/docs` (Swagger appears — already!)
+- [x] Verify the journey: your browser (client) → HTTP → Uvicorn → FastAPI → response
 
 ### Session 04 — GET endpoints + path parameters
 
-- [ ] Create `@app.get("/hello")` and test it in the browser and in Swagger
-- [ ] Explain why `/hello` is a "path"
-- [ ] Add a path parameter: `@app.get("/items/{item_id}")`
-- [ ] Explain that `{item_id}` is a variable *inside* the URL
-- [ ] Test with different values in Swagger (why: Swagger shows the parameter)
-- [ ] Explain the difference between the URL path and the data the client sends
+- [x] Create `@app.get("/hello")` and test it in the browser and in Swagger
+- [x] Explain why `/hello` is a "path"
+- [x] Add a path parameter: `@app.get("/items/{item_id}")`
+- [x] Explain that `{item_id}` is a variable *inside* the URL
+- [x] Test with different values in Swagger (why: Swagger shows the parameter)
+- [x] Explain the difference between the URL path and the data the client sends
 
 ### Session 05 — Query parameters
 
@@ -183,6 +183,23 @@ cannot diagnose why a request fails in production.
 - Compared a webpage request vs an API request (HTML vs JSON, `Accept` header).
 - Understood HTTP status codes and why the first digit matters.
 - Drafted the answers to the Mentor Questions (see below) — based on my own words, validated with the mentor.
+- Session 02 — HTTP: methods, status codes, request/response anatomy.
+- Learned the anatomy of the request note: method + path + version (`GET /assets/7 HTTP/1.1`) + headers (`Host`, `Accept`).
+- Learned the anatomy of the response note: status line + headers (`Content-Type`) + body (JSON, can be empty).
+- Learned the status codes 200, 201, 204, 404, 422, 500 and their categories (2/4/5).
+- Practiced reading a real request/response pair (`GET /assets/7` → `404`).
+- Confirmed the 4 methods: GET (read), POST (create), PUT (update), DELETE (delete).
+- Session 03 — Environment + first app (FIRST CODE SESSION).
+- Created the venv with `py -3.11 -m venv .venv` and activated it (`source .venv/Scripts/activate`).
+- Created `requirements.txt` (fastapi, uvicorn) and installed with `pip install -r requirements.txt`.
+- Wrote the first `main.py` with `@app.get("/")` returning a JSON message.
+- Ran `uvicorn main:app --port 8000 --reload` and saw `200 OK` in the browser + Swagger at `/docs`.
+   - Fixed a real error: uvicorn was running from the wrong project's terminal (see Problems).
+- Session 04 — GET endpoints + path parameters.
+- Created `@app.get("/hello")` and `@app.get("/items/{item_id}")` with `item_id: int` in `main.py`.
+- Tested `/`, `/hello` and `/items/15` in the browser and in Swagger (`/docs`).
+- Saw FastAPI convert the path segment to `int` and validate it: `/items/abc` returned `422`, and a valid but missing id returned `404`.
+- Understood that the path identifies the resource (like apartment 15 in a building) and that data outside the path is extra information, not the address.
 
 ### How it works / why
 
@@ -227,18 +244,20 @@ cannot diagnose why a request fails in production.
    - **5** = the problem is on the server side.
    Sending a wrong code (e.g., `200` when the request could not be fulfilled) breaks the
    contract because both parties agreed on what each code means.
-   *(Specific codes `201`, `204`, `422` are covered in detail in later sessions.)*
+   *(Specific codes `201`, `204`, `422` were covered in detail in Session 02.)*
 
 8. **How does Swagger generate its documentation? Why can't it go out of date?**
    *(Covered in a later session — pending answer.)*
 
 ### Commands I used
 
-No commands — this was a no-code concept session.
-
 | Command | Why I used it |
 |---|---|
-| *(None)* | Concept session: mental model only, first session of Phase 1 |
+| `py -3.11 -m venv .venv` | Create the project venv with Python 3.11 (isolated deps) |
+| `source .venv/Scripts/activate` | Activate the venv (prompt shows `(.venv)`) |
+| `py --version` | Verify Python 3.11.9 (in this Git Bash, `python` is not found — `py` works) |
+| `pip install -r requirements.txt` | Install dependencies from the recipe |
+| `uvicorn main:app --port 8000 --reload` | Run the server; `--reload` restarts on code changes |
 
 ### Problems encountered
 
@@ -247,6 +266,11 @@ No commands — this was a no-code concept session.
 | I initially placed the API "inside" the journey drawing as if it were a communication layer | I reviewed the library/catalog analogy with the mentor | The API is the **contract/menu**, not a layer: the client and the server both consult it before talking |
 | I struggled with "webpage vs API" — I thought there was no difference | We compared who asks (browser vs program) and what comes back (HTML vs JSON) | Same journey, different passenger and different luggage: selected by the `Accept` header |
 | I said the client "discovers" the method+URL on the spot | Mentor clarification | The method + URL are already written in the menu; the client reads that line and copies it into the note |
+| I thought `HTTP/1.1` was the URL | We broke down the request line | It is the protocol version: the line is method + path + version |
+| I called `api.inventario.com` "the route" | Compared Host vs path | `Host` is the building (which server receives the note); the path `/assets/7` is what FastAPI reads |
+| I was not sure if 404 meant the route or the resource was missing | Discussion with the mentor | The route exists; the 404 is returned because the asset does not exist — category 4, client error |
+| `Error loading ASGI app. Could not import module "main"` | Checked `pwd`, `ls main.py`, `which uvicorn`; ran an import test with the venv python | Uvicorn was run from PyCharm's terminal in the OTHER project (`C:\FastAPI\vtasks\ProyectoFastAPI1`, venv `PythonProject1`). Fixed: run from `C:\API-Learning-Lab` with `.venv` active. Lesson: uvicorn resolves `main:app` relative to the current folder and uses the active venv's Python |
+| Al principio leí `/items/abc` como `404` en vez de `422` | Observé el cuerpo JSON real que devolvió FastAPI | `/items/abc` da `422` con `loc:["path","item_id"]` (dato mal formado); el `404` es para un id válido pero inexistente. Lección: validar observando el JSON, no asumiendo el código |
 
 ### Lessons learned / self-explanation
 
@@ -262,14 +286,20 @@ failed (5). A webpage request and an API request use the same road and the same 
 difference is who asks (browser vs program) and what they get (HTML vs JSON), chosen via the
 `Accept` header. Now I can explain the whole journey to a friend.
 
+**Session 02:** The HTTP note has two halves. On the way out: method + path + version + headers (`Host` = which building, `Accept` = what format I expect). On the way back: a status line with a code whose first digit is the category, headers like `Content-Type`, and a body. `HTTP/1.1` is the protocol version, not the URL. The path is what FastAPI reads to route; the `Host` only decides which server receives the note. A `404` means the route exists but the resource does not — the client asked for something that is not there, so it is a category 4 error. Each method is a verb with a clear job (GET read, POST create, PUT update, DELETE delete), and the status code I return is part of the contract with the client.
+
+**Session 03:** The first code session made the mental model real. A venv is an isolated "toy box" per project: activating it only changes that terminal, and closing the terminal (or `deactivate`) closes it without affecting other projects. Uvicorn resolves `main:app` relative to the folder where you run it and uses the active venv's Python — that is why running it from the wrong project produced *"Could not import module main"*. FastAPI generates Swagger automatically from the decorators, so documentation never drifts from the code. I now understand why `requirements.txt` exists: one command (`pip install -r requirements.txt`) reproduces the whole environment.
+
+**Session 04:** Los parámetros de ruta (`{item_id}`) son variables dentro de la URL que FastAPI captura y pasa a la función. El type hint `int` hace dos cosas automáticas: convierte el texto de la URL a entero y lo valida; si no es entero (`/items/abc`) devuelve `422` antes de ejecutar la función. El `404` es distinto: la petición es válida pero el recurso no existe. La ruta identifica el recurso —como el número de apartamento 15 en un edificio—; los datos fuera de la ruta son instrucciones extra, no la dirección.
+
 ### Evidence
 
 - [x] Answers drafted by the student (`Respuesta.txt` → transferred here by the mentor)
-- [x] Session log entry appended (2026-08-11)
-- [x] Execution plan updated (Session 01 marked complete)
-- [ ] Screenshots saved in `screenshots/stage-01/` (e.g., `01-swagger-list.png`, `02-requests-script.png`) — pending (no code yet)
+- [x] Session log entry appended (2026-08-13)
+- [x] Execution plan updated (Sessions 01 + 02 + 03 marked complete)
+- [ ] Screenshots saved in `screenshots/stage-01/` (e.g., `01-swagger-list.png`, `02-requests-script.png`) — pending (student takes them in a future session)
 - [ ] ADR written (if a decision was made) — none this session
-- [ ] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab — pending end-of-day push
+- [x] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab — re-sync pending end-of-day
 
 > 🚀 **Next:** Stage 02 — Real Project: turn the mini API into the structured IT Assets
 > Inventory with a full CRUD.
