@@ -297,9 +297,9 @@ difference is who asks (browser vs program) and what they get (HTML vs JSON), ch
 - [x] Answers drafted by the student (`Respuesta.txt` → transferred here by the mentor)
 - [x] Session log entry appended (2026-08-13)
 - [x] Execution plan updated (Sessions 01 + 02 + 03 marked complete)
-- [ ] Screenshots saved in `screenshots/stage-01/` (e.g., `01-swagger-list.png`, `02-requests-script.png`) — pending (student takes them in a future session)
+- [x] Screenshots saved in `screenshots/stage-01/` (Swagger de `/items/{item_id}` y error `422` de `/items/abc`) — 2026-08-24
 - [ ] ADR written (if a decision was made) — none this session
-- [x] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab — re-sync pending end-of-day
+- [x] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab `develop` (`main` también alineada) — 2026-08-24 ✅
 
 > 🚀 **Next:** Stage 02 — Real Project: turn the mini API into the structured IT Assets
 > Inventory with a full CRUD.
