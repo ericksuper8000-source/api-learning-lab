@@ -38,7 +38,7 @@ stages — it tells you exactly where the project is and what to do next.
 - **Next session target:** Stage 01 — Session 05: query parameters (`?q=...`), path + query combined
 - **Blockers / open questions:** None.
 - **Last session:** 2026-08-24 — Phase 1, Session 04 (GET + path parameters) + daily recap (Sessions 01–03)
-- **Last commit / push:** ⬜ pending — student commits Session 04 docs to GitHub + GitLab `develop`
+- **Last commit / push:** ✅ pushed 2026-08-24 (Session 04 docs + screenshots) to GitHub + GitLab (`develop`; `main` también alineada vía `git push origin main`)
 
 ---
 

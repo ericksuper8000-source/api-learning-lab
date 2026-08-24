@@ -94,7 +94,7 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 **Next session (target):**
 - Stage 01 — Session 05: query parameters (`?q=...`), combinar path + query.
 
-**Commit / push:** ⬜ pendiente — student confirma y hace commit + push a GitHub + GitLab (`develop`).
+**Commit / push:** ✅ subido 2026-08-24 a GitHub + GitLab (`develop`; `main` alineada vía `git push origin main`).
 
 ---
 
