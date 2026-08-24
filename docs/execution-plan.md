@@ -31,14 +31,14 @@ stages — it tells you exactly where the project is and what to do next.
 > **This block is updated at the end of every session.**
 
 - **Current phase:** Phase 1 — API Fundamentals 🔄 (in progress)
-- **Current stage / task:** Stage 01 — Session 01 complete: What is an API? The request journey mental model (no code). **Next: Session 02 — HTTP: methods, status codes, request/response anatomy**
+- **Current stage / task:** Stage 01 — Session 04 complete: `@app.get("/hello")` + path param `@app.get("/items/{item_id}")` with `item_id: int`; automatic conversion/validation (`422` on bad type), `404` vs `422` distinction, path = resource address. **Next: Session 05 — Query parameters**
 - **Phases 2–5:** ⬜ Pending
-- **Last completed item:** Phase 1 — Session 01 (what is an API, the request journey, 4 roles, status codes, webpage vs API) ✅
+- **Last completed item:** Phase 1 — Session 04 (GET endpoints + path parameters, type validation, 422/404) ✅
 - **Daily recap status:** Protocol refined 2026-08-11 — recap covers ONLY the technical syllabus (API/HTTP/FastAPI/PostgreSQL/etc.), never Git/SSH (from the other project). See `AGENTS.md`.
-- **Next session target:** Stage 01 — Session 02: HTTP — methods, status codes, request/response anatomy
-- **Blockers / open questions:** Student's Report answers drafted in `Respuesta.txt` (Desktop) — pending transfer to the stage-01 Report.
-- **Last session:** 2026-08-11 — Phase 1, Session 01 (API fundamentals, no code)
-- **Last commit / push:** pending end-of-day (student task); last pushed: 2026-08-10 (bootstrap)
+- **Next session target:** Stage 01 — Session 05: query parameters (`?q=...`), path + query combined
+- **Blockers / open questions:** None.
+- **Last session:** 2026-08-24 — Phase 1, Session 04 (GET + path parameters) + daily recap (Sessions 01–03)
+- **Last commit / push:** ⬜ pending — student commits Session 04 docs to GitHub + GitLab `develop`
 
 ---
 
@@ -107,9 +107,9 @@ stages — it tells you exactly where the project is and what to do next.
 **Stage document:** [`stages/stage-01-api-fundamentals.md`](stages/stage-01-api-fundamentals.md)
 
 - [x] Session 01 — What is an API? The request journey mental model (no code)
-- [ ] Session 02 — HTTP: methods, status codes, request/response anatomy
-- [ ] Session 03 — Environment: venv, install fastapi + uvicorn + requests, first app, run it
-- [ ] Session 04 — GET endpoints + path parameters
+- [x] Session 02 — HTTP: methods, status codes, request/response anatomy
+- [x] Session 03 — Environment: venv, install fastapi + uvicorn + requests, first app, run it
+- [x] Session 04 — GET endpoints + path parameters
 - [ ] Session 05 — Query parameters; combining path + query
 - [ ] Session 06 — POST + JSON body + Pydantic models (dict → model)
 - [ ] Session 07 — Path + query + body together; automatic validation and `422`
@@ -259,7 +259,7 @@ stages — it tells you exactly where the project is and what to do next.
 
 **End of session (20 min):**
 
-6. Fill the stage report section in the stage document.
+ 6. The agent fills the stage report section in the stage document from the session conversation (the student does not edit it by hand).
 7. Save screenshots/evidence in `screenshots/stage-NN/`.
 8. Append an entry to `session-log.md`.
 9. Tick completed checkboxes in this file and update **Current Status**.

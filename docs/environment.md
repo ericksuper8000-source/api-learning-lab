@@ -4,7 +4,7 @@
 **Objective:** Document the local environment where the project lives, so every stage can
 assume a verified baseline instead of unknown state.
 
-**Last verified:** 2026-08-04
+**Last verified:** 2026-08-13
 
 ---
 
@@ -18,22 +18,34 @@ assume a verified baseline instead of unknown state.
 
 | Tool | Purpose in this project | Verified |
 |---|---|---|
-| Visual Studio Code | Main editor | — |
+| Visual Studio Code | General editor | — |
+| PyCharm | FastAPI practice editor (how the student learned FastAPI; used daily for the reference project) | — |
 | Git 2.52 | Version control | `git --version` ✅ |
 | Python 3.11 (project standard) | The application runtime | `py -0` ✅ (3.11 and 3.14 installed) |
 | PostgreSQL 18 | The persistence layer (local service `postgresql-x64-18`, running) | `Get-Service postgresql-x64-18` ✅ |
 | pip / venv | Dependencies and virtual environments | part of Python ✅ |
 
 > ⚠️ **Python note:** the Windows launcher is used: `py -3.11 -m venv .venv`. Both 3.11
-> and 3.14 exist on the machine. **3.11 is the project standard** (confirmed in Session 01).
+> and 3.14 exist on the machine. **3.11 is the project standard** (confirmed in Session 01,
+> verified as 3.11.9 in Session 03).
 > Docker is installed on the machine but is **not part of this project** (ADR-0004).
+>
+> ⚠️ **Git Bash quirk (verified 2026-08-13):** in Git Bash on this machine, `python` is not
+> found by default — use the `py` launcher (`py --version` → `Python 3.11.9`). Inside the
+> active venv, `uvicorn` and `pip` work normally.
+>
+> ✅ **Run the app (verified 2026-08-13):** open Git Bash in `C:\API-Learning-Lab`, then
+> `source .venv/Scripts/activate`, then `uvicorn main:app --port 8000 --reload`. The app must
+> be started from `C:\API-Learning-Lab` with `.venv` active, or uvicorn reports *"Could not
+> import module `main`"* (it looks for `main.py` in the current folder and uses the active
+> venv's Python). To stop/leave: `Ctrl+C` and `deactivate` (or just close the terminal).
 
 ## Repositories & Folders
 
 | Path | Role |
 |---|---|
 | `C:\API-Learning-Lab` | **The real repository** — live (2026-08-10): initialized `git init`, branches `main` (estable) + `develop` (integración), pushed to GitHub + GitLab. Code + tests + CI will live here. |
-| `C:\Users\XPC\Desktop\FastApi - Project` | **Memory/planning folder** — documentation, session log, execution plan. Kept in sync with `C:\API-Learning-Lab`. |
+| `E:\Datos\IA\FastApi - Project` | **Memory/planning folder** — documentation, session log, execution plan. Kept in sync with `C:\API-Learning-Lab`. |
 | `C:\FastAPI\vtasks` | Prior practice environment (venv, Python 3.14) with `ProyectoFastAPI1/2`. Reference only — not the repo. |
 | `C:\Repo2` + `Desktop\CICD - BORRADOR` | The CI/CD Pipeline Labs project — this API is handed off to it in Phase 5. |
 | `C:\Repo` | Git practice repo (hello-world) — unrelated, reference only. |
@@ -108,7 +120,7 @@ By the end of this setup, the following are **not assumed** — they are verifie
 ## Definition of Done (Phase 0 environment)
 
 - [x] Tools verified (Git, Python 3.11, PostgreSQL 18).
-- [ ] `C:\API-Learning-Lab` created and initialized with `master` + `develop`.
+- [ ] `C:\API-Learning-Lab` created and initialized with `main` + `develop`.
 - [ ] Both remotes configured and first push done.
 - [ ] GitHub + GitLab `api-learning-lab` repos created and in sync.
 - [x] Memory folder created and synced with `C:\API-Learning-Lab`.
