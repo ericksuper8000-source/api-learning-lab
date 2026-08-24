@@ -111,7 +111,7 @@ GitHub, GitLab, and local execution. Nothing is paid, nothing is provisioned in 
 | Phase | Topic | Status |
 |---|---|---|
 | 0 | Planning & Documentation Architecture | ✅ Complete (repo bootstrapped + SSH auth) |
-| 1 | API Fundamentals | 🔄 Next |
+| 1 | API Fundamentals | 🔄 In progress (Session 04 complete) |
 | 2 | Real Project — IT Assets Inventory CRUD | ⬜ Pending |
 | 3 | PostgreSQL Persistence | ⬜ Pending |
 | 4 | Code Quality & CI | ⬜ Pending |
@@ -146,7 +146,7 @@ GitHub, GitLab, and local execution. Nothing is paid, nothing is provisioned in 
 1. Read [`docs/execution-plan.md`](docs/execution-plan.md) → **Current Status**.
 2. ✅ **Phase 0 repo bootstrap complete** (`C:\API-Learning-Lab` live, GitHub + GitLab
    repos `api-learning-lab`, SSH auth working — no password on push).
-3. Next: **Stage 01 — API Fundamentals** ([`docs/stages/stage-01-api-fundamentals.md`](docs/stages/stage-01-api-fundamentals.md)).
+3. Next: **Stage 01 — Session 05 — Query parameters** (`?q=...`) ([`docs/stages/stage-01-api-fundamentals.md`](docs/stages/stage-01-api-fundamentals.md)).
 
 ---
 

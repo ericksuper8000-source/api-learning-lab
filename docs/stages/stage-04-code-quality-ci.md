@@ -128,7 +128,7 @@ single deployment, because deployment belongs to the CICD project.
 ### Session 10 — GitHub Actions (quality-only)
 
 - [ ] Create `.github/workflows/ci.yml` (why: this file defines the pipeline)
-- [ ] Trigger on `push` to `develop` and `pull_request` to `master`
+- [ ] Trigger on `push` to `develop` and `pull_request` to `main`
 - [ ] Job `quality`: install → Ruff → Black --check → Mypy → Bandit → pip-audit
 - [ ] Job `test`: install → Pytest (against the test database strategy)
 - [ ] Push and watch the pipeline run green on GitHub

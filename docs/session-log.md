@@ -57,6 +57,94 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 
 ---
 
+## 2026-08-24 — Session 04 (Phase 1 · Session 04 — GET endpoints + path parameters)
+
+**Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 04 (GET endpoints + path parameters)
+
+**Daily recap (start of day):**
+- Passed ✅ — Q1 ¿qué es una API? (contrato/menú que definen cliente y servidor; resuelve el lenguaje común sobre HTTP). Q2 anatomía de la petición HTTP (línea = método + ruta + `HTTP/1.1`; cabeceras `Host` y `Accept`). Q3 `venv` (caja aislada de Python por proyecto; requiere carpeta correcta + venv activo; distinción `.venv` ≠ `.env`).
+
+**Deck (pending questions for next sessions):**
+- POST + cuerpo (JSON body) — Sesión 06.
+- PUT vs PATCH (reemplazo completo vs parcial) — Fase 2, Sesión 06.
+- Uso práctico de 201/204 en endpoints reales — fases siguientes.
+
+**Worked on:**
+- `@app.get("/hello")` y `@app.get("/items/{item_id}")` con `item_id: int` en `C:\API-Learning-Lab\main.py`.
+- Verificado en navegador y Swagger (`/`, `/hello`, `/items/15`).
+- Validación automática: FastAPI convierte el segmento de texto a `int` y valida; `/items/abc` → `422` (cuerpo `loc:["path","item_id"]`); `/items/999` (válido, inexistente) → `404`.
+- Diferencia ruta vs datos aparte: la ruta identifica el recurso (ej. `/items/15` = "apartamento 15 en el edificio items"); los datos aparte son instrucciones extra (filtros), no la dirección.
+
+**Concepts learned / reinforced:**
+- Un parámetro de ruta `{item_id}` es una variable dentro de la URL que FastAPI captura y pasa a la función.
+- El type hint `int` no solo etiqueta: FastAPI **convierte** (texto → entero) y **valida** (si no es entero → `422` antes de ejecutar la función).
+- `422` = datos mal formados (cliente); `404` = datos válidos pero recurso no encontrado. Ambos son error de cliente (categoría 4), distintos.
+- La ruta nombra el recurso; los datos fuera de la ruta son información adicional (se verá en query/body, Sesiones 05–06).
+
+**Commands / tools used:**
+- `uvicorn main:app --reload` (corriendo desde `C:\API-Learning-Lab` con `.venv` activo) — servidor con recarga.
+- Navegador / Swagger para probar `GET /`, `/hello`, `/items/15`, `/items/abc`.
+
+**Errors encountered:**
+- Estudiante leyó `/items/abc` como `404` → al observar el cuerpo real, confirmó `422`. Lección: validar observando el JSON, no asumir el código.
+
+**Questions still open:**
+- None (deck de sesiones futuras permanece).
+
+**Next session (target):**
+- Stage 01 — Session 05: query parameters (`?q=...`), combinar path + query.
+
+**Commit / push:** ⬜ pendiente — student confirma y hace commit + push a GitHub + GitLab (`develop`).
+
+---
+
+## 2026-08-13 — Session 03 (Phase 1 · Sessions 02 + 03 — HTTP + Environment & first app)
+
+**Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Sessions 02 (HTTP) + 03 (Environment + first app)
+
+**Daily recap (start of day):**
+- Passed ✅ — Q1 Uvicorn vs FastAPI (portero vs recepcionista; el cliente siempre inicia; se necesitan mutuamente). Q2 Host/Accept + aclaración URL vs Host (edificio vs oficina).
+
+**Deck (pending questions for next sessions):**
+- POST + cuerpo (JSON body) — se verá en la Sesión 06.
+- PUT vs PATCH (reemplazo completo vs parcial) — Fase 2, Sesión 06.
+- Uso práctico de 201/204 en endpoints reales — fases siguientes.
+
+**Worked on:**
+- Sesión 02 — HTTP: anatomía request (`GET /assets/7 HTTP/1.1`, cabeceras `Host`/`Accept`), anatomía response (`200 OK`, `Content-Type`, cuerpo), códigos 200/201/204/404/422/500, métodos GET/POST/PUT/DELETE.
+- Sesión 03 — PRIMERA SESIÓN CON CÓDIGO: creó el venv (`py -3.11 -m venv .venv`), `requirements.txt` (fastapi, uvicorn), `pip install -r requirements.txt`, escribió `main.py` con `@app.get("/")`, corrió `uvicorn main:app --port 8000 --reload`.
+- Verificó en el navegador: `http://127.0.0.1:8000/` → `200 OK` con `{"Mensaje": "Hola API"}` y `/docs` → Swagger mostrando `GET / Root`.
+
+**Concepts learned / reinforced:**
+- Un venv es una "caja de juguetes" aislada por proyecto; activarlo solo afecta a esa terminal y no toca otros proyectos; se cierra con `deactivate` o cerrando la terminal.
+- Uvicorn resuelve `main:app` **relativo a la carpeta actual** y usa el Python del entorno activo — si corres desde otro proyecto, no encuentra `main.py`.
+- FastAPI genera Swagger automáticamente desde el código (el decorador `@app.get("/")`); código y docs nunca se desfasan.
+- `--reload` reinicia el servidor solo al detectar cambios.
+- `requirements.txt` es la receta: un solo `pip install -r` reproduce el entorno completo.
+
+**Commands / tools used:**
+- `py -3.11 -m venv .venv` — crear el entorno con Python 3.11
+- `source .venv/Scripts/activate` — activar el venv en Git Bash
+- `py --version` — verificar versión (3.11.9; en esta máquina `python` no funciona en Git Bash, se usa `py`)
+- `pip install -r requirements.txt` — instalar dependencias desde la receta
+- `uvicorn main:app --port 8000 --reload` — correr el servidor
+
+**Errors encountered:**
+- `Error loading ASGI app. Could not import module "main"` → investigado con `pwd`, `ls main.py`, `which` y prueba de import con el Python del venv → el uvicorn se ejecutaba desde la terminal de PyCharm del OTRO proyecto (`C:\FastAPI\vtasks\ProyectoFastAPI1`) con su venv `PythonProject1` → resuelto corriendo desde `C:\API-Learning-Lab` con `.venv` activo.
+- Confusión URL vs Host (creyó que "la ruta" era `api.inventario.com`) → resuelta con la analogía edificio/oficina.
+- Dijo "HTTP/1.1 es la url" → corregido: es la versión del protocolo.
+- Nota de entorno: PyCharm se usa para FastAPI (cómo el estudiante aprendió); VS Code como editor general.
+
+**Questions still open:**
+- None.
+
+**Next session (target):**
+- Stage 01 — Session 04: GET endpoints + path parameters.
+
+**Commit / push:** ✅ pushed to GitHub + GitLab (2026-08-13) — `develop`.
+
+---
+
 ## 2026-08-11 — Session 02 (Phase 1 · Session 01 — What is an API?)
 
 **Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 01 (What is an API? The request journey — no code)
@@ -95,7 +183,7 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 **Next session (target):**
 - Stage 01 — Session 02: HTTP — methods, status codes, request/response anatomy.
 
-**Commit / push:** Pending end-of-day (student task) — `main`/`develop` not yet pushed today.
+**Commit / push:** ✅ pushed to GitHub + GitLab (2026-08-10) — `main`/`develop`.
 
 ---
 
@@ -184,7 +272,7 @@ memory-file trivia). Starts applying from Phase 1.
 - Confirm the Python version standard (3.11 planned) on the first code session.
 
 **Next session (target):**
-- Phase 0 — repo bootstrap: create `C:\API-Learning-Lab`, `git init` (`master` + `develop`),
+- Phase 0 — repo bootstrap: create `C:\API-Learning-Lab`, `git init` (`main` + `develop`),
   create GitHub + GitLab `api-learning-lab` repos, configure remotes, first push to both.
 
 **Commit / push:** N/A — memory folder; will be synced to `C:\API-Learning-Lab` and pushed

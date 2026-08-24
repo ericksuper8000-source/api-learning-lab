@@ -32,7 +32,7 @@ practice with the tool the industry depends on (Git) from the very start.
 ## Consequences
 
 - Commit history is the project narrative.
-- Branches (`master`, `develop`) and feature branches are part of daily practice.
+- Branches (`main`, `develop`) and feature branches are part of daily practice.
 - Definition of Done includes "committed and pushed".
 
 ## If It Disappeared
