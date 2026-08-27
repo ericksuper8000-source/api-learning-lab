@@ -1,4 +1,6 @@
 '''
+Cliente -> HTTP -> Uvicorn -> FastApi -> Pydantic -> Codigo -> Base de datos >
+
 La sintaxis de Query Parameters en FastAPI
 La regla es siempre la misma:
 def mi_funcion(parametro_normal: tipo, parametro_query: tipo = valor_por_defecto):
@@ -17,11 +19,17 @@ No hay decorador especial. No hay Query() a menos que quieras validaciones avanz
 
 '''
 
-
-
+from pydantic import BaseModel
 from fastapi import FastAPI
 
 app = FastAPI()
+
+# Esto define lo que el cliente debe enviar, si no lo manda asi da un error 422
+class Item(BaseModel):
+    name : str
+    brand : str
+    serial : str
+    status : str = "active"
 
 @app.get('/')
 def root():
@@ -42,6 +50,12 @@ def read_items(
     if q:
         return {'filtrado_por': q}
     return {'mensaje': "No se envio el filtro"}
+
+items = []
+
+@app.get('/items/lista')
+def listar_items():
+    return items
 
 @app.get('/items/{item_id}')
 def read_item(
@@ -68,3 +82,10 @@ def read_item(
         }
 
     return {"item_id": item_id}
+
+@app.post('/items/', status_code=201)
+def crear_item(
+        item : Item
+):
+    items.append(item.model_dump())
+    return item
