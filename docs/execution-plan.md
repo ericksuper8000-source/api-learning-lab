@@ -31,14 +31,14 @@ stages — it tells you exactly where the project is and what to do next.
 > **This block is updated at the end of every session.**
 
 - **Current phase:** Phase 1 — API Fundamentals 🔄 (in progress)
-- **Current stage / task:** Stage 01 — Session 04 complete: `@app.get("/hello")` + path param `@app.get("/items/{item_id}")` with `item_id: int`; automatic conversion/validation (`422` on bad type), `404` vs `422` distinction, path = resource address. **Next: Session 05 — Query parameters**
+- **Current stage / task:** Stage 01 — Session 06 complete: POST + JSON body + Pydantic models (`class Item(BaseModel)`). **Next: Session 07 — Path + query + body together; validation and 422**
 - **Phases 2–5:** ⬜ Pending
-- **Last completed item:** Phase 1 — Session 04 (GET endpoints + path parameters, type validation, 422/404) ✅
+- **Last completed item:** Phase 1 — Session 06 (POST + JSON body + Pydantic models) ✅
 - **Daily recap status:** Protocol refined 2026-08-11 — recap covers ONLY the technical syllabus (API/HTTP/FastAPI/PostgreSQL/etc.), never Git/SSH (from the other project). See `AGENTS.md`.
-- **Next session target:** Stage 01 — Session 05: query parameters (`?q=...`), path + query combined
+- **Next session target:** Stage 01 — Session 07: Path + query + body together; validation and 422
 - **Blockers / open questions:** None.
-- **Last session:** 2026-08-24 — Phase 1, Session 04 (GET + path parameters) + daily recap (Sessions 01–03)
-- **Last commit / push:** ✅ pushed 2026-08-24 (Session 04 docs + screenshots) to GitHub + GitLab (`develop`; `main` también alineada vía `git push origin main`)
+- **Last session:** 2026-08-26 — Phase 1, Session 06 (POST + JSON body + Pydantic) + daily recap (Sessions 01–05)
+- **Last commit / push:** pendiente del estudiante
 
 ---
 
@@ -50,7 +50,7 @@ stages — it tells you exactly where the project is and what to do next.
 | Plan | ☒ Defined |
 | Zero-cost policy | ☒ Active (ADR-0004) |
 | Version control | ☒ Live (repo `C:\API-Learning-Lab`, ramas `main` + `develop`) |
-| Application (FastAPI) | ⬜ Not started (Phase 1) |
+| Application (FastAPI) | 🔄 In progress — `main.py` with 4 GET + 1 POST, in-memory `items` (Phase 1, Sessions 03–06) |
 | Database (PostgreSQL) | ⬜ Not started (Phase 3) |
 | Code quality | ⬜ Not started (Phase 4) |
 | CI (quality only) | ⬜ Not started (Phase 4) |
@@ -110,8 +110,8 @@ stages — it tells you exactly where the project is and what to do next.
 - [x] Session 02 — HTTP: methods, status codes, request/response anatomy
 - [x] Session 03 — Environment: venv, install fastapi + uvicorn + requests, first app, run it
 - [x] Session 04 — GET endpoints + path parameters
-- [ ] Session 05 — Query parameters; combining path + query
-- [ ] Session 06 — POST + JSON body + Pydantic models (dict → model)
+- [x] Session 05 — Query parameters; combining path + query
+- [x] Session 06 — POST + JSON body + Pydantic models (dict → model)
 - [ ] Session 07 — Path + query + body together; automatic validation and `422`
 - [ ] Session 08 — HTTP status codes in the API (200, 201, 204, 404, 422); response models
 - [ ] Session 09 — The `requests` library: client scripts that consume the API

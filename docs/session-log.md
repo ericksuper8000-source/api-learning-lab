@@ -57,6 +57,93 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 
 ---
 
+## 2026-08-26 — Session 06 (Phase 1 · Session 06 — POST + JSON body + Pydantic)
+
+**Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 06 (POST + JSON body + Pydantic)
+
+**Daily recap (start of day):**
+- Passed ✅ — Q1 Uvicorn vs FastAPI (portero vs recepcionista, se necesitan ambos). Q2 `/items/abc` devuelve `422` porque `abc` no es entero. Q3 diferencia entre `404` (recurso no existe) y `422` (datos mal formados).
+
+**Deck (pending questions for next sessions):**
+- PUT vs PATCH (reemplazo completo vs parcial) — Fase 2, Sesión 06.
+- Uso práctico de 201/204 en endpoints reales — fases siguientes.
+
+**Worked on:**
+- Explained the request body: why complex data can't go in the URL (size limits, structure, convention).
+- Introduced Pydantic: automatic data validation before the function runs.
+- Created `class Item(BaseModel)` with fields: name, brand, serial, status (optional).
+- Created `POST /items/` that receives the Item model and returns 201.
+- Explained the full request journey: Client → HTTP → Uvicorn → FastAPI → Pydantic → Code → DB → back.
+- Created restaurant analogy for Path/Query/Body and saved it in stage-01 report.
+- Fixed route ordering issue: `/items/lista` had to be defined before `/items/{item_id}`.
+
+**Concepts learned / reinforced:**
+- Request body = JSON sent separate from the URL, for complex/structured data.
+- Pydantic = the inspector that validates data before your code runs.
+- Path identifies the resource, Query adds instructions, Body carries the real data.
+- Route order matters in FastAPI: static routes must come before parameterized routes.
+- 422 = "I understood your request but the data is wrong" (Pydantic validation).
+
+**Commands / tools used:**
+- `uvicorn main:app --reload` — server with auto-reload.
+- Swagger UI to test POST and GET endpoints.
+
+**Errors encountered:**
+- `items` list was not defined → fixed by adding `items = []`.
+- GET `/items/lista` returned 422 → route `/items/{item_id}` was catching "lista" as item_id → fixed by reordering routes.
+
+**Questions still open:**
+- None (deck de sesiones futuras permanece).
+
+**Next session (target):**
+- Stage 01 — Session 07: Path + query + body together; validation and 422.
+
+**Commit / push:** pendiente del estudiante.
+
+---
+
+## 2026-08-25 — Session 05 (Phase 1 · Session 05 — Query parameters)
+
+**Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 05 (Query parameters)
+
+**Daily recap (start of day):**
+- Passed ✅ — Q1 diferencia entre path parameter y query parameter (recordó parcialmente, reforzado con la analogía del edificio/apartamento). Q2 `/items/abc` devuelve `422` porque `abc` no es entero — "entendí tu petición pero los datos están mal". Q3 FastAPI es quien decide a qué función dirigirse (el recepcionista que busca la combinación método + URL).
+
+**Deck (pending questions for next sessions):**
+- POST + cuerpo (JSON body) — Sesión 06.
+- PUT vs PATCH (reemplazo completo vs parcial) — Fase 2, Sesión 06.
+- Uso práctico de 201/204 en endpoints reales — fases siguientes.
+
+**Worked on:**
+- Added `@app.get("/items/")` with `q: str | None = None` — query parameter for filtering.
+- Tested `?q=laptop` and without it — confirmed query = optional filters.
+- Combined path + query in `@app.get("/items/{item_id}")` with `verbose: bool = False` and `formato: str = "normal"`.
+- Tested `/items/15`, `/items/15?verbose=true`, `/items/15?formato=corto`, `/items/15?formato=largo`.
+- Understood the syntax: query parameters are function parameters with a default value; FastAPI detects them automatically.
+
+**Concepts learned / reinforced:**
+- Query parameters are extra instructions, not the address. Path = resource, query = how you want it.
+- Syntax: `nombre: tipo = valor_por_defecto` in the function. No decorator change needed.
+- Multiple query parameters can coexist: `verbose: bool = False, formato: str = "normal"`.
+- Real use case: mobile client wants light data (`?formato=corto`), desktop wants full detail (`?formato=largo`).
+
+**Commands / tools used:**
+- `uvicorn main:app --reload` — server with auto-reload.
+- Browser/Swagger to test `/items/15`, `/items/15?verbose=true`, `/items/15?formato=corto`, `/items/15?formato=largo`.
+
+**Errors encountered:**
+- Created a separate `/formatos/` endpoint with wrong logic (compared int with string) → fixed by the mentor. Lesson: query parameters go in the existing function, not a new endpoint; the type must match the comparison.
+
+**Questions still open:**
+- None (deck de sesiones futuras permanece).
+
+**Next session (target):**
+- Stage 01 — Session 06: POST + JSON body + Pydantic models.
+
+**Commit / push:** pendiente del estudiante.
+
+---
+
 ## 2026-08-24 — Session 04 (Phase 1 · Session 04 — GET endpoints + path parameters)
 
 **Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 04 (GET endpoints + path parameters)

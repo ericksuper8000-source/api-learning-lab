@@ -288,7 +288,7 @@ When multiple approaches exist, prioritize:
 A stage is **complete** when ALL of the following are true:
 
 - [ ] All checklist items in the stage document are marked.
-- [ ] The stage report section is filled (objective, procedure, explanation, problems, solutions, lessons).
+  - [ ] The stage report section is filled by the agent from the session conversation (objective, procedure, explanation, problems, solutions, lessons).
 - [ ] Evidence (screenshots / outputs) saved in `screenshots/stage-NN/`.
 - [ ] An ADR is written if a meaningful decision was made.
 - [ ] A session-log entry is appended.
