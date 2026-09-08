@@ -98,7 +98,7 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 **Next session (target):**
 - Stage 01 — Session 07: Path + query + body together; validation and 422.
 
-**Commit / push:** pendiente del estudiante.
+**Commit / push:** `2fde8cd` docs(stage-01): sync S05-S06, fixes + pin deps — pushed 2026-09-08 to GitHub ✅ GitLab ✅ (`develop`) — (sync realizado 2026-09-08 para corregir duplicado S07, triplicación lección y deuda de `main.py`/`requirements.txt`)
 
 ---
 

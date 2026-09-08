@@ -38,7 +38,7 @@ stages — it tells you exactly where the project is and what to do next.
 - **Next session target:** Stage 01 — Session 07: Path + query + body together; validation and 422
 - **Blockers / open questions:** None.
 - **Last session:** 2026-08-26 — Phase 1, Session 06 (POST + JSON body + Pydantic) + daily recap (Sessions 01–05)
-- **Last commit / push:** pendiente del estudiante
+- **Last commit / push:** `2fde8cd` docs(stage-01): sync S05-S06, fixes + pin deps — pushed 2026-09-08 to GitHub ✅ GitLab ✅ (`develop`)
 
 ---
 
