@@ -1,32 +1,21 @@
 """
 API-Learning-Lab — Phase 1: API Fundamentals
 
-Request journey: Client → HTTP → Uvicorn → FastAPI → Pydantic → Code → Response
+Request journey (so far): Client → HTTP → Uvicorn → FastAPI → Code → Response
+(Pydantic not yet seen — will be added in Session 06)
 
 Query params rule in FastAPI:
     def func(path_param: type, query_param: type = default):
     - without default → path / required param
     - with default    → query param (FastAPI auto-detects)
-
-No Query() needed unless you want extra validation (min_length, gt, etc.).
 """
 
 from fastapi import FastAPI
-from pydantic import BaseModel
 
 app = FastAPI()
 
 # In-memory store — will be replaced by PostgreSQL in Phase 3 (ADR-0006)
 items: list[dict] = []
-
-
-class Item(BaseModel):
-    """Payload for POST /items/ — Pydantic validates before the function runs (422 on failure)."""
-
-    name: str
-    brand: str
-    serial: str
-    status: str = "active"
 
 
 @app.get("/")
@@ -79,6 +68,6 @@ def read_item(
 
 
 @app.post("/items/", status_code=201)
-def crear_item(item: Item) -> Item:
-    items.append(item.model_dump())
+def crear_item(item: dict) -> dict:
+    items.append(item)
     return item
