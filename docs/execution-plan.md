@@ -37,8 +37,8 @@ stages — it tells you exactly where the project is and what to do next.
 - **Daily recap status:** Protocol refined 2026-08-11 — recap covers ONLY the technical syllabus (API/HTTP/FastAPI/PostgreSQL/etc.), never Git/SSH (from the other project). See `AGENTS.md`.
 - **Next session target:** Stage 01 — Session 06: POST + JSON body + Pydantic models (dict → model)
 - **Blockers / open questions:** Pydantic pendiente de validar — no avanzar a S07 hasta que S06 esté entendido.
-- **Last session:** 2026-08-25 — Phase 1, Session 05 (Query parameters) + daily recap (Sessions 01–04) — POST sin Pydantic visto
-- **Last commit / push:** `b340487` docs: update Last commit/push — pushed 2026-09-08 to GitHub ✅ GitLab ✅ (`develop`) — docs ajustados 2026-09-08 para reflejar Pydantic pendiente
+- **Last session:** 2026-09-08 — Live Session (Recap S01–S05 3/3 ✅ + S06 intro Body/Pydantic + FASTAPI 1.txt) — POST/Pydantic aún pendiente de validar
+- **Last commit / push:** `7b2ec40` docs: integrate FASTAPI 1.txt + `cfdecad` fix(main) básico — pushed 2026-09-08 to GitHub ✅ GitLab ✅ (`develop`) — **cambios de hoy (2026-09-08 live session) pendientes de commit/push (bloqueado por estudiante)**
 
 ---
 

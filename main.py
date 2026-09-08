@@ -39,3 +39,4 @@ def read_items(q: str | None = None):
 @app.post("/items/")
 def crear_item():
     return {"mensaje": "POST recibido — body se verá en Session 06"}
+
