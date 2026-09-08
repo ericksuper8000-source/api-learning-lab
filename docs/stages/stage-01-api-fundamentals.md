@@ -94,20 +94,20 @@ cannot diagnose why a request fails in production.
 
 ### Session 05 — Query parameters
 
-- [ ] Add a query parameter: `@app.get("/items/")` with `q: str | None = None`
-- [ ] Test with `?q=servidor` and without it (why: query = optional filters)
-- [ ] Combine path + query: `/items/{item_id}?verbose=true`
-- [ ] Explain when a value belongs in the path vs the query string
-- [ ] Document the examples in the Report
+- [x] Add a query parameter: `@app.get("/items/")` with `q: str | None = None`
+- [x] Test with `?q=laptop` and without it (why: query = optional filters)
+- [x] Combine path + query: `/items/{item_id}?verbose=true` and `/items/{item_id}?formato=largo`
+- [x] Explain when a value belongs in the path vs the query string
+- [x] Document the examples in the Report
 
 ### Session 06 — POST + JSON body + Pydantic
 
-- [ ] Explain what a request body is and when it is used (why: you cannot put complex data in a URL)
-- [ ] Create a Pydantic model: `class Item(BaseModel)` with typed fields
-- [ ] Create `@app.post("/items/")` that receives the model as parameter
-- [ ] Send JSON from Swagger and verify the API echoes it back
-- [ ] Explain: JSON in → Pydantic validates → dict → response
-- [ ] Compare: dictionary vs Pydantic model (why Pydantic validates, a dict does not)
+- [x] Explain what a request body is and when it is used (why: you cannot put complex data in a URL)
+- [x] Create a Pydantic model: `class Item(BaseModel)` with typed fields
+- [x] Create `@app.post("/items/")` that receives the model as parameter
+- [x] Send JSON from Swagger and verify the API echoes it back
+- [x] Explain: JSON in → Pydantic validates → dict → response
+- [x] Compare: dictionary vs Pydantic model (why Pydantic validates, a dict does not)
 
 ### Session 07 — Path + query + body together; validation and 422
 
@@ -200,6 +200,19 @@ cannot diagnose why a request fails in production.
 - Tested `/`, `/hello` and `/items/15` in the browser and in Swagger (`/docs`).
 - Saw FastAPI convert the path segment to `int` and validate it: `/items/abc` returned `422`, and a valid but missing id returned `404`.
 - Understood that the path identifies the resource (like apartment 15 in a building) and that data outside the path is extra information, not the address.
+- Session 05 — Query parameters.
+- Added `@app.get("/items/")` with `q: str | None = None` as a query parameter for filtering.
+- Tested `?q=laptop` and without it — query = optional filters.
+- Combined path + query in `@app.get("/items/{item_id}")` with `verbose: bool = False` and `formato: str = "normal"`.
+- Tested `/items/15`, `/items/15?verbose=true`, `/items/15?formato=corto`, `/items/15?formato=largo`.
+- Understood the difference: path = resource address (obligatory), query = extra instructions (optional, has default value).
+- Session 06 — POST + JSON body + Pydantic models.
+- Explained why complex data can't go in the URL (size limits, structure, convention).
+- Created `class Item(BaseModel)` with typed fields (name, brand, serial, status).
+- Created `POST /items/` endpoint that receives the Item model and returns 201.
+- Tested in Swagger: POST creates item, GET /items/lista shows the list.
+- Understood Pydantic: validates data automatically before your code runs, returns 422 if invalid.
+- Fixed route ordering: `/items/lista` must come before `/items/{item_id}`.
 
 ### How it works / why
 
@@ -227,13 +240,17 @@ cannot diagnose why a request fails in production.
    two separate jobs — keeping them separate is what makes the API clean and debuggable.
 
 4. **What is the difference between a path parameter and a query parameter?**
-   *(Covered in a later session — pending answer.)*
+   A path parameter (`/items/{item_id}`) identifies **which resource** you want — it's the
+   address. Without it, you can't reach the resource. A query parameter (`?verbose=true`)
+   tells the server **how** you want the response — it's extra information that doesn't change
+   the resource itself. In code: path parameters go inside `{}` in the route; query parameters
+   are function parameters with a default value, and FastAPI detects them automatically.
 
 5. **When do you use a request body instead of parameters in the URL?**
-   *(Covered in a later session — pending answer.)*
+   When the client needs to send complex or structured data. URLs have size limits (~2000 chars), can't represent nested objects, and by REST convention, query parameters are for filtering, not for sending resource data. The body is a JSON payload with no practical size limit and full structure.
 
 6. **What does Pydantic do? Why does invalid data produce a `422`?**
-   *(Covered in a later session — pending answer.)*
+   Pydantic is the inspector that validates data automatically before your code runs. It checks: are all required fields present? Is each field the correct type (str, int, bool)? Does it meet constraints (min_length, gt, etc.)? If anything is wrong, it returns `422 Unprocessable Entity` — meaning "I understood your request but the data is malformed." Your function never executes with bad data.
 
 7. **What do `200`, `201`, `204`, `404`, and `422` mean, and when would you return each?**
    A status code is the contract's signature: it tells the client the outcome **without
@@ -258,6 +275,7 @@ cannot diagnose why a request fails in production.
 | `py --version` | Verify Python 3.11.9 (in this Git Bash, `python` is not found — `py` works) |
 | `pip install -r requirements.txt` | Install dependencies from the recipe |
 | `uvicorn main:app --port 8000 --reload` | Run the server; `--reload` restarts on code changes |
+| Swagger UI (`/docs`) | Test POST and GET endpoints visually |
 
 ### Problems encountered
 
@@ -271,6 +289,8 @@ cannot diagnose why a request fails in production.
 | I was not sure if 404 meant the route or the resource was missing | Discussion with the mentor | The route exists; the 404 is returned because the asset does not exist — category 4, client error |
 | `Error loading ASGI app. Could not import module "main"` | Checked `pwd`, `ls main.py`, `which uvicorn`; ran an import test with the venv python | Uvicorn was run from PyCharm's terminal in the OTHER project (`C:\FastAPI\vtasks\ProyectoFastAPI1`, venv `PythonProject1`). Fixed: run from `C:\API-Learning-Lab` with `.venv` active. Lesson: uvicorn resolves `main:app` relative to the current folder and uses the active venv's Python |
 | Al principio leí `/items/abc` como `404` en vez de `422` | Observé el cuerpo JSON real que devolvió FastAPI | `/items/abc` da `422` con `loc:["path","item_id"]` (dato mal formado); el `404` es para un id válido pero inexistente. Lección: validar observando el JSON, no asumiendo el código |
+| `items` list not defined when POST endpoint used it | Checked the code — `items = []` was missing | Added `items = []` before the POST endpoint. Lesson: variables must be defined before use |
+| GET `/items/lista` returned 422 | Route `/items/{item_id}` was catching "lista" as item_id | Moved `/items/lista` before `/items/{item_id}`. Lesson: route order matters — static routes first |
 
 ### Lessons learned / self-explanation
 
@@ -292,14 +312,30 @@ difference is who asks (browser vs program) and what they get (HTML vs JSON), ch
 
 **Session 04:** Los parámetros de ruta (`{item_id}`) son variables dentro de la URL que FastAPI captura y pasa a la función. El type hint `int` hace dos cosas automáticas: convierte el texto de la URL a entero y lo valida; si no es entero (`/items/abc`) devuelve `422` antes de ejecutar la función. El `404` es distinto: la petición es válida pero el recurso no existe. La ruta identifica el recurso —como el número de apartamento 15 en un edificio—; los datos fuera de la ruta son instrucciones extra, no la dirección.
 
+**Session 05:** Los parámetros de query son la forma de enviar filtros e instrucciones extra al servidor sin cambiar la dirección. La sintaxis es siempre la misma: `nombre: tipo = valor_por_defecto` en la función. FastAPI los detecta automáticamente porque tienen valor por defecto y no están en la ruta `{}`. Se pueden combinar varios query parameters en la misma función (`verbose: bool = False, formato: str = "normal"`). La diferencia clave: la ruta identifica el recurso (obligatorio), el query modifica la respuesta (opcional). Ejemplo real: un cliente móvil quiere datos ligeros (`?formato=corto`) y uno de escritorio quiere todo detallado (`?formato=largo`).
+
+**Session 06:** El request body existe para enviar datos estructurados (JSON) de forma segura, sin límite de tamaño y con jerarquía. Pydantic es el inspector que valida automáticamente que los campos obligatorios estén presentes y sean del tipo correcto; si falta algo o está mal, devuelve `422` antes de que la función se ejecute. La sintaxis es: `class Item(BaseModel)` con campos tipados, y el endpoint recibe el modelo como parámetro (`item: Item`). FastAPI se encarga de convertir el JSON a un objeto Pydantic, validarlo, y entregarlo a tu función. El orden de las rutas importa: las rutas estáticas (`/items/lista`) deben definirse ANTES que las rutas con parámetros (`/items/{item_id}`), de lo contrario FastAPI intentará emparejar "lista" como un `item_id`.
+
+**Analogía del Restaurante (Path, Query, Body):**
+- **Path** = La dirección del restaurante (`/ViaMontana/RestauranteBonito/Mesa5`). Te dice **a dónde vas**. Sin ella, no llegas.
+- **Query** = Instrucciones extras al mesero (`/Mesa5?velocidad=rápido&porcion=grande`). Son **extras opcionales** — si no los pones, te atienden con valores normales.
+- **Body** = El pedido que le das al mesero (`{"platillo": "Tacos al pastor", "cantidad": 2, "sin_cebolla": true}`). Es **la información real** de lo que quieres. No va en la URL, se lo das directamente al mesero en un papel.
+
+| ¿Qué? | Ejemplo | ¿Para qué? |
+|---|---|---|
+| **Path** | `/items/5` | Decir **a qué recurso** voy |
+| **Query** | `?formato=corto` | Dar **instrucciones extra** (opcionales) |
+| **Body** | `{"name": "Laptop"}` | Enviar **los datos reales** del recurso |
+
 ### Evidence
 
 - [x] Answers drafted by the student (`Respuesta.txt` → transferred here by the mentor)
 - [x] Session log entry appended (2026-08-13)
 - [x] Execution plan updated (Sessions 01 + 02 + 03 marked complete)
 - [x] Screenshots saved in `screenshots/stage-01/` (Swagger de `/items/{item_id}` y error `422` de `/items/abc`) — 2026-08-24
+- [x] Session log entry appended (2026-08-26 — Session 06)
+- [x] Execution plan updated (Session 06 marked complete)
 - [ ] ADR written (if a decision was made) — none this session
 - [x] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab `develop` (`main` también alineada) — 2026-08-24 ✅
 
-> 🚀 **Next:** Stage 02 — Real Project: turn the mini API into the structured IT Assets
-> Inventory with a full CRUD.
+> 🚀 **Next:** Session 07 — Path + query + body together; validation and 422.

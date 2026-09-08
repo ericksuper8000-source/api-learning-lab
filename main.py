@@ -1,68 +1,62 @@
-'''
-Cliente -> HTTP -> Uvicorn -> FastApi -> Pydantic -> Codigo -> Base de datos >
+"""
+API-Learning-Lab — Phase 1: API Fundamentals
 
-La sintaxis de Query Parameters en FastAPI
-La regla es siempre la misma:
-def mi_funcion(parametro_normal: tipo, parametro_query: tipo = valor_por_defecto):
-- Sin valor por defecto → es un parámetro normal (obligatorio)
-- Con valor por defecto → FastAPI lo detecta como query parameter automáticamente
-Ejemplos claros
-# query parameter de tipo string, opcional (puede ser None)
-def read_items(q: str | None = None):
+Request journey: Client → HTTP → Uvicorn → FastAPI → Pydantic → Code → Response
 
-# query parameter de tipo boolean, opcional (default False)
-def read_item(item_id: int, verbose: bool = False):
+Query params rule in FastAPI:
+    def func(path_param: type, query_param: type = default):
+    - without default → path / required param
+    - with default    → query param (FastAPI auto-detects)
 
-# query parameter de tipo string, opcional (default "corto")
-def read_item(item_id: int, formato: str = "corto"):
-No hay decorador especial. No hay Query() a menos que quieras validaciones avanzadas. Solo es el parámetro con su valor por defecto.
+No Query() needed unless you want extra validation (min_length, gt, etc.).
+"""
 
-'''
-
-from pydantic import BaseModel
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
-# Esto define lo que el cliente debe enviar, si no lo manda asi da un error 422
+# In-memory store — will be replaced by PostgreSQL in Phase 3 (ADR-0006)
+items: list[dict] = []
+
+
 class Item(BaseModel):
-    name : str
-    brand : str
-    serial : str
-    status : str = "active"
+    """Payload for POST /items/ — Pydantic validates before the function runs (422 on failure)."""
 
-@app.get('/')
-def root():
-    return {
-        'Mensaje': "Hello World"
-    }
+    name: str
+    brand: str
+    serial: str
+    status: str = "active"
 
-@app.get('/hello')
-def say_hello():
-    return {
-        'Mensaje': "Hola desde /hello"
-    }
 
-@app.get('/items/')
-def read_items(
-        q: str | None = None
-):
+@app.get("/")
+def root() -> dict[str, str]:
+    return {"Mensaje": "Hello World"}
+
+
+@app.get("/hello")
+def say_hello() -> dict[str, str]:
+    return {"Mensaje": "Hola desde /hello"}
+
+
+@app.get("/items/")
+def read_items(q: str | None = None) -> dict[str, str]:
     if q:
-        return {'filtrado_por': q}
-    return {'mensaje': "No se envio el filtro"}
+        return {"filtrado_por": q}
+    return {"mensaje": "No se envio el filtro"}
 
-items = []
 
-@app.get('/items/lista')
-def listar_items():
+@app.get("/items/lista")
+def listar_items() -> list[dict]:
     return items
 
-@app.get('/items/{item_id}')
+
+@app.get("/items/{item_id}")
 def read_item(
-        item_id: int,
-        verbose: bool = False,
-        formato: str = "normal"
-):
+    item_id: int,
+    verbose: bool = False,
+    formato: str = "normal",
+) -> dict:
     if formato == "corto":
         return {"item_id": item_id}
 
@@ -71,21 +65,20 @@ def read_item(
             "item_id": item_id,
             "tipo": "camino",
             "estado": "activo",
-            "ubicacion": "oficina 3"
+            "ubicacion": "oficina 3",
         }
 
     if verbose:
         return {
             "item_id": item_id,
             "tipo": "camino",
-            "detalle": "Información completa del item"
+            "detalle": "Información completa del item",
         }
 
     return {"item_id": item_id}
 
-@app.post('/items/', status_code=201)
-def crear_item(
-        item : Item
-):
+
+@app.post("/items/", status_code=201)
+def crear_item(item: Item) -> Item:
     items.append(item.model_dump())
     return item

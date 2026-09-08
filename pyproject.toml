@@ -1,0 +1,39 @@
+[project]
+name = "api-learning-lab"
+version = "0.1.0"
+description = "IT Assets Inventory API — FastAPI + PostgreSQL (learning project)"
+readme = "README.md"
+requires-python = "==3.11.*"
+dependencies = [
+  "fastapi==0.141.1",
+  "uvicorn==0.52.3",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+skip-string-normalization = false
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "C4", "UP"]
+ignore = []
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+strict = false
+
+[tool.bandit]
+exclude_dirs = ["tests", ".venv"]
+skips = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v"
