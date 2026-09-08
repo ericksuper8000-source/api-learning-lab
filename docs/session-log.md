@@ -57,6 +57,42 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 
 ---
 
+## 2026-09-08 — Doc correction (Pydantic pending — student clarification)
+
+**Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 06 pending (Pydantic not yet validated)
+
+**Daily recap (start of day):** N/A — documentation sync session (no recap).
+
+**Deck (pending questions for next sessions):**
+- Pydantic: what it does, why 422 before function — Session 06 pending.
+- PUT vs PATCH — Fase 2.
+- 201/204 usage — fases siguientes.
+
+**Worked on:**
+- Student clarified on 2026-09-08 that Pydantic has not been seen — only GET, POST, path and query were seen (POST without Pydantic model).
+- Corrected docs to reflect reality (Incremental Learning Rule): unchecked Session 06 in `execution-plan.md` and `stage-01-api-fundamentals.md`, updated Current Status to Session 05 complete / Session 06 next, corrected `session-log` and `stage-01` Evidence, updated `execution-plan` General Status (Application: Sessions 03–05).
+- Main.py still contains `class Item(BaseModel)` (`C:\API-Learning-Lab\main.py:22`) from previous sync — will be treated as not yet validated until Session 06 is done live (or reverted if student prefers `dict` version).
+- Synced `E:\Datos\IA\FastApi - Project\docs\` → `C:\API-Learning-Lab\docs\` and committed `b340487` + `2fde8cd` already pushed; this correction will be committed as `docs: correct S06 to pending (Pydantic)`.
+
+**Concepts learned / reinforced:**
+- Documentation must reflect what the student can explain, not what the file contains — updated to honor student's statement.
+
+**Commands / tools used:**
+- Manual edits to `execution-plan.md`, `stage-01-api-fundamentals.md`, `session-log.md` — why: keep single source of truth honest
+
+**Errors encountered:**
+- Docs marked Session 06 complete while student had not yet validated Pydantic → corrected by unchecking S06 and moving Current Status back to S05.
+
+**Questions still open:**
+- None — pending Pydantic validation in next live Session 06.
+
+**Next session (target):**
+- Stage 01 — Session 06: POST + JSON body + Pydantic models (dict → model) — live validation
+
+**Commit / push:** pending — will be `docs: correct S06 to pending (Pydantic)` → push to `develop` (GitHub+GitLab)
+
+---
+
 ## 2026-08-26 — Session 06 (Phase 1 · Session 06 — POST + JSON body + Pydantic)
 
 **Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 06 (POST + JSON body + Pydantic)
@@ -98,7 +134,7 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 **Next session (target):**
 - Stage 01 — Session 07: Path + query + body together; validation and 422.
 
-**Commit / push:** pendiente del estudiante.
+**Commit / push:** `2fde8cd` docs(stage-01): sync S05-S06, fixes + pin deps — pushed 2026-09-08 to GitHub ✅ GitLab ✅ (`develop`) — (sync realizado 2026-09-08 para corregir duplicado S07, triplicación lección y deuda de `main.py`/`requirements.txt`)
 
 ---
 

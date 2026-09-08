@@ -31,14 +31,14 @@ stages — it tells you exactly where the project is and what to do next.
 > **This block is updated at the end of every session.**
 
 - **Current phase:** Phase 1 — API Fundamentals 🔄 (in progress)
-- **Current stage / task:** Stage 01 — Session 06 complete: POST + JSON body + Pydantic models (`class Item(BaseModel)`). **Next: Session 07 — Path + query + body together; validation and 422**
+- **Current stage / task:** Stage 01 — Session 05 complete: Query parameters (`?q=...`) + path+query combined. POST visto sin Pydantic — **Next: Session 06 — POST + JSON body + Pydantic models (`class Item(BaseModel)`)**
 - **Phases 2–5:** ⬜ Pending
-- **Last completed item:** Phase 1 — Session 06 (POST + JSON body + Pydantic models) ✅
+- **Last completed item:** Phase 1 — Session 05 (Query parameters; path+query) ✅ — POST sin Pydantic visto (Pydantic pendiente)
 - **Daily recap status:** Protocol refined 2026-08-11 — recap covers ONLY the technical syllabus (API/HTTP/FastAPI/PostgreSQL/etc.), never Git/SSH (from the other project). See `AGENTS.md`.
-- **Next session target:** Stage 01 — Session 07: Path + query + body together; validation and 422
-- **Blockers / open questions:** None.
-- **Last session:** 2026-08-26 — Phase 1, Session 06 (POST + JSON body + Pydantic) + daily recap (Sessions 01–05)
-- **Last commit / push:** pendiente del estudiante
+- **Next session target:** Stage 01 — Session 06: POST + JSON body + Pydantic models (dict → model)
+- **Blockers / open questions:** Pydantic pendiente de validar — no avanzar a S07 hasta que S06 esté entendido.
+- **Last session:** 2026-08-25 — Phase 1, Session 05 (Query parameters) + daily recap (Sessions 01–04) — POST sin Pydantic visto
+- **Last commit / push:** `b340487` docs: update Last commit/push — pushed 2026-09-08 to GitHub ✅ GitLab ✅ (`develop`) — docs ajustados 2026-09-08 para reflejar Pydantic pendiente
 
 ---
 
@@ -50,7 +50,7 @@ stages — it tells you exactly where the project is and what to do next.
 | Plan | ☒ Defined |
 | Zero-cost policy | ☒ Active (ADR-0004) |
 | Version control | ☒ Live (repo `C:\API-Learning-Lab`, ramas `main` + `develop`) |
-| Application (FastAPI) | 🔄 In progress — `main.py` with 4 GET + 1 POST, in-memory `items` (Phase 1, Sessions 03–06) |
+| Application (FastAPI) | 🔄 In progress — `main.py` with 3 GET + POST (sin Pydantic aún), in-memory `items` (Phase 1, Sessions 03–05) — Pydantic pendiente S06 |
 | Database (PostgreSQL) | ⬜ Not started (Phase 3) |
 | Code quality | ⬜ Not started (Phase 4) |
 | CI (quality only) | ⬜ Not started (Phase 4) |
@@ -111,7 +111,7 @@ stages — it tells you exactly where the project is and what to do next.
 - [x] Session 03 — Environment: venv, install fastapi + uvicorn + requests, first app, run it
 - [x] Session 04 — GET endpoints + path parameters
 - [x] Session 05 — Query parameters; combining path + query
-- [x] Session 06 — POST + JSON body + Pydantic models (dict → model)
+- [ ] Session 06 — POST + JSON body + Pydantic models (dict → model) — POST sin Pydantic visto, Pydantic pendiente
 - [ ] Session 07 — Path + query + body together; automatic validation and `422`
 - [ ] Session 08 — HTTP status codes in the API (200, 201, 204, 404, 422); response models
 - [ ] Session 09 — The `requests` library: client scripts that consume the API

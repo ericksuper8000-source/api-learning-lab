@@ -102,12 +102,12 @@ cannot diagnose why a request fails in production.
 
 ### Session 06 — POST + JSON body + Pydantic
 
-- [x] Explain what a request body is and when it is used (why: you cannot put complex data in a URL)
-- [x] Create a Pydantic model: `class Item(BaseModel)` with typed fields
-- [x] Create `@app.post("/items/")` that receives the model as parameter
-- [x] Send JSON from Swagger and verify the API echoes it back
-- [x] Explain: JSON in → Pydantic validates → dict → response
-- [x] Compare: dictionary vs Pydantic model (why Pydantic validates, a dict does not)
+- [ ] Explain what a request body is and when it is used (why: you cannot put complex data in a URL)
+- [ ] Create a Pydantic model: `class Item(BaseModel)` with typed fields
+- [ ] Create `@app.post("/items/")` that receives the model as parameter
+- [ ] Send JSON from Swagger and verify the API echoes it back
+- [ ] Explain: JSON in → Pydantic validates → dict → response
+- [ ] Compare: dictionary vs Pydantic model (why Pydantic validates, a dict does not)
 
 ### Session 07 — Path + query + body together; validation and 422
 
@@ -333,9 +333,9 @@ difference is who asks (browser vs program) and what they get (HTML vs JSON), ch
 - [x] Session log entry appended (2026-08-13)
 - [x] Execution plan updated (Sessions 01 + 02 + 03 marked complete)
 - [x] Screenshots saved in `screenshots/stage-01/` (Swagger de `/items/{item_id}` y error `422` de `/items/abc`) — 2026-08-24
-- [x] Session log entry appended (2026-08-26 — Session 06)
-- [x] Execution plan updated (Session 06 marked complete)
+- [ ] Session log entry appended (2026-08-26 — Session 06) — pendiente validación Pydantic (corregido 2026-09-08)
+- [ ] Execution plan updated (Session 06 marked complete) — revertido 2026-09-08: Pydantic pendiente
 - [ ] ADR written (if a decision was made) — none this session
 - [x] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab `develop` (`main` también alineada) — 2026-08-24 ✅
 
-> 🚀 **Next:** Session 07 — Path + query + body together; validation and 422.
+> 🚀 **Next:** Session 06 — POST + JSON body + Pydantic models (dict → model) — Pydantic pendiente.
