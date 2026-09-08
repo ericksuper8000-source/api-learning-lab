@@ -57,6 +57,39 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 
 ---
 
+## 2026-09-08 — Memory update (FASTAPI 1.txt concepts integrated)
+
+**Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Query params variations already seen
+
+**Daily recap (start of day):** N/A — memory integration (no recap).
+
+**Deck (pending questions for next sessions):**
+- Pydantic: what it does, why 422 — Session 06 pending.
+
+**Worked on:**
+- Student provided `C:\Users\XPC\Desktop\FASTAPI 1.txt` (2026-08-31, 1666 bytes) with query-param patterns already seen: `Texto: str = 'Juanita'` (default), `Texto: str | None = None` (optional/null), `Texto: str` (required, error if missing), `Numero: int | None = 15` (int with default), path vs query distinction (`@app.get("/usuarios/{id}")` vs `@app.get("/usuarios")`), and simple conditional `if (Numero > 5)`.
+- Integrated file into memory: copied to `E:\Datos\IA\FastApi - Project\_archive\FASTAPI 1 - conceptos vistos (2026-08-31).txt` and to `C:\API-Learning-Lab\docs\FASTAPI 1 - conceptos vistos (2026-08-31).txt` for AI recall.
+- Confirms Session 05 query concepts are already validated beyond basic `q: str | None = None` — student can distinguish required vs optional vs default query params.
+
+**Concepts learned / reinforced:**
+- Query param = `param: type = default` → optional with default; `param: type | None = None` → optional nullable; `param: type` → required (422 if missing). Path param = inside `{}` in route, always required.
+
+**Commands / tools used:**
+- File integration — why: keep single source of truth including student's prior notes
+
+**Errors encountered:**
+- None
+
+**Questions still open:**
+- None
+
+**Next session (target):**
+- Stage 01 — Session 06: POST + JSON body + Pydantic (still pending) — recap will cover path/query variations from FASTAPI 1.txt as known
+
+**Commit / push:** pending — will be `docs: integrate FASTAPI 1.txt concepts`
+
+---
+
 ## 2026-09-08 — Doc correction (Pydantic pending — student clarification)
 
 **Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 06 pending (Pydantic not yet validated)

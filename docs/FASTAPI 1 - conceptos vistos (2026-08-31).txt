@@ -1,0 +1,65 @@
+# En este caso el query parametro tiene un valor por defecto, si no enviamos nada, se usa el valor por defecto, si envio algo lo reemplaza
+@task_router.get('/unidad2')
+def Primera(
+        Texto : str = 'Juanita'
+):
+    return {
+        'Texto' : Texto
+    }
+
+# En este caso el query parametro tiene dos potenciales escenarios, uno es que ingresemos un texto o lo dejemos en blanco
+# Si agregamos texto, se usa ese valor {"Texto":"Erick"}, si no enviamos texto se asigna None como valor {"Texto":null}
+@task_router.get('/unidad3')
+def Primera(
+        Texto : str | None = None
+):
+    return {
+        'Texto' : Texto
+    }
+
+# En este escenario estamos obligados a mandar un valor, si no lo hacemos dara error
+@task_router.get('/unidad4')
+def Primera(
+        Texto : str #No se esta asignando un valor por defecto
+):
+    return {
+        'Texto' : Texto
+    }
+
+
+# En este escenario puede ser por defecto 15 o otro numero o nada, todo eso se permite
+@task_router.get('/unidad1/')
+def Primera(
+        Numero : int | None = 15
+):
+    return {
+        'Numero' : Numero
+    }
+
+
+
+'''
+[PATH]
+@app.get("/usuarios/{id}")
+def obtener_usuario(id: int):
+
+[QUERY]
+@app.get("/usuarios")
+def obtener_usuario(id: int | None = None):
+'''
+
+
+
+# Pongamosle atencion a este ejemplo, es mi primer ejemplo de un condicional simple con fastapi
+@task_router.get('/unidad4')
+def Primera(
+        Numero : int | None
+):
+    if (Numero > 5):
+        return {
+            'Mensaje' : "El numero ingresado es mayor que 5"
+        }
+    else:
+        return {
+            'Mensaje' : "El numero ingresado es menor que 5"
+        }
