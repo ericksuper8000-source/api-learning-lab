@@ -57,6 +57,53 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 
 ---
 
+## 2026-09-08 — Live Session (Recap S01–S05 + S06 intro — Body/Pydantic)
+
+**Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 05 validated / Session 06 intro (Pydantic pending)
+
+**Daily recap (start of day):**
+- Passed ✅ 3/3 — Q1 query variations (`Texto: str = 'Juanita'` default vs `str | None = None` null vs `str` required → 422, regla `con = es opcional`), Q2 path `/usuarios/15` obligatorio (dirección) vs query `?id=15` opcional (filtro), Q3 Uvicorn (portero recibe sin leer) vs FastAPI (recepcionista busca método+ruta → Pydantic filtra → función). Estudiante explicó con analogía edificio/apartamento y caja de autos — comprensión real, no memoria.
+
+**Deck (pending questions for next sessions):**
+- Pydantic: por qué valida antes de la función y 422 — S06 pendiente (hoy intro).
+- `items: list[dict] = []` y `model_dump()` — pendientes de explicar como 1 concepto a la vez.
+- PUT vs PATCH, 201/204 — Fase 2.
+
+**Worked on:**
+- Integración `C:\Users\XPC\Desktop\FASTAPI 1.txt` (2026-08-31) — 4 patrones query ya vistos (`= 'Juanita'`, `| None = None`, `str` required, `int | None = 15`), distinción path vs query, condicional simple — copiado a `_archive` y `docs/` y documentado.
+- Corrección honesta de docs: student aclaró que solo había visto GET, POST básico, path y query básicos — no Pydantic, no dict/list storage. Se revirtió `execution-plan.md` (S06 → [ ] pendiente), `stage-01` (S06 → [ ]), `session-log` (nuevas entradas 2026-09-08) y `main.py` (de `class Item(BaseModel)` con storage a POST básico sin body) para respetar Incremental Learning Rule. Commits `8eb2665`, `cfdecad`, `7b2ec40` y `6384b94` pusheados previamente.
+- Recap S01–S05 validado y S06 concepto Body: por qué URL tiene límite y expone datos sensibles → Body JSON aparte; analogía restaurante (path=dirección, query=filtro, body=caja).
+- Live S06 intro (antes de la aclaración): se creó `class Item(BaseModel)` con `name, brand, serial, status='active'`, `items: list[dict] = []`, `POST /items/ status_code=201` con `item: Item` + `items.append(item.model_dump())` en `C:\API-Learning-Lab\main.py:14`. Se probó en Swagger: `POST {"name":"Laptop","brand":"Dell","serial":"SN123"} → 201` y `GET /items/lista → 200` con entries; `POST` sin `serial → 422`. Se detectó y corrigió orden de rutas (`/items/lista` debe ir antes de `/{item_id}` o da 422).
+- Tras aclaración del estudiante, se revirtió `main.py:12` a versión básica sin Pydantic/dict (`item: dict` → luego `def crear_item(): return {"mensaje":"POST recibido"}`) para que código coincida con lo realmente visto. `main.py` final hoy: 4 GET + 1 POST básico sin body, sin `list[dict]` visible como storage.
+- Explicaciones 1-a-1 a dudas del estudiante: path vs query, Body vs Body+Pydantic (inspector), `list[dict]` y `model_dump()` como fotocopia, todo con analogía niño.
+- Creación de `C:\Users\XPC\Desktop\Ejemplos FastAPI - Conceptos Vistos (super simples).txt` con 5 ejemplos reales hiper simples (GET /, /hello, path, query, POST) con petición/respuesta ejecutada.
+
+**Concepts learned / reinforced:**
+- Query con `=` es opcional (con default), sin `=` es requerido → 422; path `{id}` siempre obligatorio.
+- Uvicorn recibe sin leer, FastAPI resuelve método+ruta → Pydantic filtra → función (si falla, 422 sin ejecutar).
+- Body va fuera de la URL por límite/seguridad/estructura; Pydantic es inspector que valida antes y documenta en Swagger; `dict` solo para hack rápido.
+- Orden de rutas importa: estática antes de parametrizada.
+
+**Commands / tools used:**
+- `cd /c/API-Learning-Lab` + `source .venv/Scripts/activate` — preparar
+- `uvicorn main:app --reload` — probar POST 201/422 y GET /items/lista — why: verificar en vivo
+- `http://127.0.0.1:8000/docs` Swagger — why: probar 201 y 422
+
+**Errors encountered:**
+- `GET /items/lista → 422` con `loc: ["path","item_id"]` → `lista` capturada como `item_id="lista"` → fixed moviendo `/items/lista` antes de `/{item_id}` en `main.py:22`.
+- Docs marcaban S06 con Pydantic como completo mientras estudiante no lo había validado → corregido revirtiendo docs y `main.py` a básico, honrando lo realmente visto.
+
+**Questions still open:**
+- `model_dump()` y `list[dict]` aún no interiorizados — se reintroducirán en S06 como 1 concepto a la vez.
+- Pydantic a fondo (validación, 422 detallado) — próximo S06.
+
+**Next session (target):**
+- Stage 01 — Session 06 (real): POST + JSON Body + Pydantic (`class Item(BaseModel)`, `items: list[dict]`, `model_dump()`) — validación 422 y `status_code=201`, con `GET /items/lista` para verificar persistencia en memoria.
+
+**Commit / push:** docs y `main.py` de hoy actualizados localmente en `E:\Datos\IA\FastApi - Project` y `C:\API-Learning-Lab` — **no pusheado** (bloqueado por instrucción del estudiante). Pendiente `docs: live session 2026-09-08` cuando apruebe.
+
+---
+
 ## 2026-09-08 — Memory update (FASTAPI 1.txt concepts integrated)
 
 **Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Query params variations already seen
