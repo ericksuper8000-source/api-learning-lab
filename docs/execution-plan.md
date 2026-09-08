@@ -50,7 +50,7 @@ stages — it tells you exactly where the project is and what to do next.
 | Plan | ☒ Defined |
 | Zero-cost policy | ☒ Active (ADR-0004) |
 | Version control | ☒ Live (repo `C:\API-Learning-Lab`, ramas `main` + `develop`) |
-| Application (FastAPI) | 🔄 In progress — `main.py` with 3 GET + POST (sin Pydantic aún), in-memory `items` (Phase 1, Sessions 03–05) — Pydantic pendiente S06 |
+| Application (FastAPI) | 🔄 In progress — `main.py` con GET `/`, `/hello`, `/items/{id}`, `/items/?q=` y POST básico sin body (Phase 1, Sessions 03–05) — Body/Pydantic y list/dict pendientes S06 |
 | Database (PostgreSQL) | ⬜ Not started (Phase 3) |
 | Code quality | ⬜ Not started (Phase 4) |
 | CI (quality only) | ⬜ Not started (Phase 4) |
