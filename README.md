@@ -111,7 +111,7 @@ GitHub, GitLab, and local execution. Nothing is paid, nothing is provisioned in 
 | Phase | Topic | Status |
 |---|---|---|
 | 0 | Planning & Documentation Architecture | ✅ Complete (repo bootstrapped + SSH auth) |
-| 1 | API Fundamentals | 🔄 In progress (Session 06 complete) |
+| 1 | API Fundamentals | 🔄 In progress (Session 06 real complete 2026-09-10 — POST + Pydantic `Item`, `201/422`, `caja: list[dict]` + `GET /items/lista`; next: S06 reinforcement Ej1-Ej2 → S07) |
 | 2 | Real Project — IT Assets Inventory CRUD | ⬜ Pending |
 | 3 | PostgreSQL Persistence | ⬜ Pending |
 | 4 | Code Quality & CI | ⬜ Pending |
@@ -146,7 +146,11 @@ GitHub, GitLab, and local execution. Nothing is paid, nothing is provisioned in 
 1. Read [`docs/execution-plan.md`](docs/execution-plan.md) → **Current Status**.
 2. ✅ **Phase 0 repo bootstrap complete** (`C:\API-Learning-Lab` live, GitHub + GitLab
    repos `api-learning-lab`, SSH auth working — no password on push).
-3. Next: **Stage 01 — Session 07 — Path + query + body together; validation and 422** ([`docs/stages/stage-01-api-fundamentals.md`](docs/stages/stage-01-api-fundamentals.md)).
+3. ✅ **Stage 01 — Session 06 real complete 2026-09-10** — `POST /items/` with Pydantic `Item`
+   (`name, brand, serial, status='active'`), `status_code=201`, `422` on invalid/missing,
+   `caja: list[dict]` + `model_dump()` + `GET /items/lista` (static before `/{item_id}`).
+4. Next: **S06 reinforcement Ej1 (`location: str`) → Ej2 (`assigned_to: str | None = None`)**,
+   then **Session 07 — Path + query + body together** ([`docs/stages/stage-01-api-fundamentals.md`](docs/stages/stage-01-api-fundamentals.md)).
 
 ---
 
