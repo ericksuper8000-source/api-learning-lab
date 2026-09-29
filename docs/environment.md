@@ -120,8 +120,8 @@ By the end of this setup, the following are **not assumed** — they are verifie
 ## Definition of Done (Phase 0 environment)
 
 - [x] Tools verified (Git, Python 3.11, PostgreSQL 18).
-- [ ] `C:\API-Learning-Lab` created and initialized with `main` + `develop`.
-- [ ] Both remotes configured and first push done.
-- [ ] GitHub + GitLab `api-learning-lab` repos created and in sync.
+- [x] `C:\API-Learning-Lab` created and initialized with `main` + `develop`.
+- [x] Both remotes configured and first push done.
+- [x] GitHub + GitLab `api-learning-lab` repos created and in sync.
 - [x] Memory folder created and synced with `C:\API-Learning-Lab`.
 - [x] SSH auth configured (sin contraseña en los pushes).

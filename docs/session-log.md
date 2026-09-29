@@ -57,6 +57,51 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 
 ---
 
+## 2026-09-10 — Session 06 real (POST + Body + Pydantic, 1 concepto a la vez)
+
+**Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 06 complete / Session 07 next
+
+**Daily recap (start of day):**
+- Passed ✅ 3/3 — Q1 path `/items/15` obligatorio (dirección) vs query `?q=laptop` opcional (filtro, caja de autos por marca/color), Q2 Body aparte por límite físico URL + seguridad (no mandar sensible expuesto), Q3 Uvicorn (portero recibe sin leer) vs FastAPI (recepcionista busca método+ruta → ejecuta → JSON → Uvicorn devuelve). Corrección: puerto 22→8000 (22 es SSH, 8000 es uvicorn). Comprensión real.
+
+**Deck (pending questions for next sessions):**
+- PUT vs PATCH, 201/204 en real — Fase 2. Nada débil de hoy.
+
+**Worked on:**
+- S06 desde cero, 1 concepto a la vez (regla del estudiante desde hoy: no asumir Pydantic, solo asumir GET/path/query/Body-porqué/POST-básico). `FASTAPI.txt` en Desktop como intercambio (curl + main.py).
+- POST básico `def crear_item(): return {"mensaje":...}` → `200` por default (no crea, solo responde) — cerró duda 200 vs 201: método sugiere, lo que pasó decide.
+- `item: dict` → echo `200`, acepta basura (`additionalProp1`) — motiva inspector.
+- `class Item(BaseModel)` con 1 campo `name: str` → `{"name":"Erick"}` 200, `{}` 422 `missing loc body,name Field required` (función ni corre).
+- +`brand, serial` requeridos → bueno 200, sin `serial` 422 `loc body,serial`.
+- +`status: str = "active"` opcional (= default como `Texto='Juanita'`) → sin status vuelve `active`, con `inactive/retired` reemplaza.
+- `status_code=201` → bueno 201 (Swagger cambia a 201), malo sigue 422. Distinción `json_invalid` (coma faltante) vs `missing` (campo faltante).
+- `caja: list[dict] = []` (caja de autos en RAM, se vacía al reiniciar — preview Fase 3) + `items.append(item.model_dump())` (fotocopia Pydantic→dict).
+- `GET /items/lista` → `422 int_parsing loc path,item_id input "lista"` por orden ( `{item_id}` antes capturaba `lista`) → fix mover estática antes de parametrizada + fix `return items` → `return caja` + reload → `200 [{"name":"Laptop",...}]`.
+- Validación S06 por explicación: "Pydantic es validador/filtro, FastAPI busca método+ruta, delega a Pydantic antes de ejecutar, si cumple corre, si no 422" ✅.
+
+**Concepts learned / reinforced:**
+- 200 vs 201: 200 respondo, 201 creé; 422 inspector antes de función; `=` es opcional en query y en Pydantic; orden de rutas estática→parametrizada; `model_dump()` fotocopia; caja RAM efímera.
+
+**Commands / tools used:**
+- `uvicorn main:app --port 8000 --reload` (ya encendido) — why: probar en vivo
+- `http://127.0.0.1:8000/docs` Swagger — why: probar POST 201/422 y GET lista (curl guardado en `FASTAPI.txt`)
+
+**Errors encountered:**
+- `GET /items/lista → 422 loc path,item_id` → `/{item_id}` antes que `/lista` capturaba "lista" → fixed moviendo `/items/lista` antes.
+- `return items` con `caja` declarada → inconsistencia nombre → fixed `return caja`.
+- `422 json_invalid Expecting ',' delimiter` por coma faltante → fixed JSON, luego sí `422 missing serial` real.
+- Sigue 422 tras fix → código viejo en memoria (sin guardar/reload) → fixed guardar + Reloading.
+
+**Questions still open:**
+- None para S06. S07: path+query+body juntos.
+
+**Next session (target):**
+- Stage 01 — Session 07: Path + query + body together; validation and 422.
+
+**Commit / push:** `main.py` (S06) → `374bb3e` y README → `0d84139` — pusheados a GitHub ✅ GitLab ✅ (`develop`), verificado 2026-09-29 (nada pendiente en `origin/develop..develop`). **Pendiente:** sincronizar los docs de S06 (`execution-plan`, `session-log`, `stage-01`) de la memoria → `C:\API-Learning-Lab\docs/` y commitear: `docs(stage-01): complete S06 real` → `git push origin develop` (GitHub+GitLab).
+
+---
+
 ## 2026-09-08 — Live Session (Recap S01–S05 + S06 intro — Body/Pydantic)
 
 **Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 05 validated / Session 06 intro (Pydantic pending)
