@@ -31,14 +31,14 @@ stages — it tells you exactly where the project is and what to do next.
 > **This block is updated at the end of every session.**
 
 - **Current phase:** Phase 1 — API Fundamentals 🔄 (in progress)
-- **Current stage / task:** Stage 01 — Session 06 complete: POST + JSON body + Pydantic (`class Item` con `name, brand, serial, status='active'`, `caja: list[dict]`, `model_dump()`, `201/422`, `GET /items/lista`) — **Next: S06 refuerzo (2 ejercicios Pydantic, pedido 2026-09-10) → luego Session 07**
+- **Current stage / task:** Stage 01 — Session 06 + **S06 refuerzo complete (2026-09-29)**: Ej1 `location: str` requerido (`201` / `422 missing ["body","location"]`), Ej2 `assigned_to: str | None = None` (omitido → `null`, con valor → valor), y `status : str = 'active'` → `status : str | None = None` (`null` ahora `201`; cliente que omite `status` ahora recibe `null`) — **Next: Session 07**
 - **Phases 2–5:** ⬜ Pending
-- **Last completed item:** Phase 1 — Session 06 (POST + Body + Pydantic) ✅ — 1 concepto a la vez desde cero (dict → Item → 201 → caja → lista), validado por explicación del estudiante
-- **Daily recap status:** Protocol refined 2026-08-11 — recap covers ONLY the technical syllabus (API/HTTP/FastAPI/PostgreSQL/etc.), never Git/SSH (from the other project). See `AGENTS.md`. 2026-09-10 recap 3/3 ✅ (path vs query, Body por límite+seguridad, Uvicorn vs FastAPI — corrección puerto 22→8000).
-- **Next session target:** S06 refuerzo — Ej1 `location: str` requerido (201 + 422 missing) → Ej2 `assigned_to: str | None = None` opcional-null (sin campo → null, con campo → valor) → luego Stage 01 — Session 07
-- **Blockers / open questions:** Ninguno — S06 validado, refuerzo pedido por estudiante para soltar la mano antes de S07. Regla desde 2026-09-10: S06 y futuras construyen desde cero, 1 concepto a la vez, solo asume lo practicado.
-- **Last session:** 2026-09-10 — S06 real (Recap 3/3 ✅ + POST dict→Pydantic + 201/422 + caja/lista + fix orden rutas + fix caja vs items) — S06 validado por explicación
-- **Last commit / push:** `0d84139` develop commit README updated + `374bb3e` develop commit 09-10-26 (`main.py` S06) — pushed a GitHub ✅ GitLab ✅ (`develop`) — **verificado 2026-09-29: `origin/develop..develop` vacío, nada pendiente de push. FALTA solo sincronizar los docs de S06 (`session-log`, `execution-plan`, `stage-01`) de la memoria → `C:\API-Learning-Lab\docs/` y commitear (último commit de docs: `ede141e`, 2026-09-08).**
+- **Last completed item:** S06 refuerzo (Ej1 + Ej2 + cambio de default en `status`) ✅ — validado por evidencia (`API.txt`) y explicación del estudiante
+- **Daily recap status:** Protocol refined 2026-08-11 — recap covers ONLY the technical syllabus. 2026-09-29 recap 3/3 ✅ con 2 correcciones (Q1: campo requerido faltante olvidado → 422 antes de la función; Q3: path vs query inicialmente débil → confirmado en reformulada). Deck actualizado en `session-log.md`.
+- **Next session target:** Stage 01 — Session 07 — Path + query + body together; validation and `422`; constraints (`min_length`, `gt`). Recap arranca con 1 repetición espaciada: `| None` (tipo) vs `= None` (default)
+- **Blockers / open questions:** Ninguno. Regla vigente: S06+ construyen desde cero, 1 concepto a la vez, solo asume lo practicado.
+- **Last session:** 2026-09-29 — S06 refuerzo (recap 3/3 + Ej1 location + Ej2 assigned_to + status `str | None = None`) — cerrado con la lección "cambiar un default cambia la respuesta de los clientes que omiten el campo"
+- **Last commit / push:** `fa468af` docs(stage-01): sync s06 real + fix status coherence → PR #18 mergeado (`a07f772`) — GitHub ✅ GitLab ✅ (`develop` + `main` alineada) — **docs de hoy (S06 refuerzo 2026-09-29) pendientes de commit/push por estudiante**
 
 ---
 
@@ -50,7 +50,7 @@ stages — it tells you exactly where the project is and what to do next.
 | Plan | ☒ Defined |
 | Zero-cost policy | ☒ Active (ADR-0004) |
 | Version control | ☒ Live (repo `C:\API-Learning-Lab`, ramas `main` + `develop`) |
-| Application (FastAPI) | 🔄 In progress — `main.py` con GET `/`, `/hello`, `/items/{id}`, `/items/?q=`, POST `/items/` con `Item` (Pydantic) `201/422` y `GET /items/lista` sobre `caja: list[dict]` (Phase 1, Sessions 03–06) — S07 siguiente |
+| Application (FastAPI) | 🔄 In progress — `main.py` con GET `/`, `/hello`, `/items/{id}`, `/items/?q=`, POST `/items/` con `Item` (Pydantic) `201/422` y `GET /items/lista` sobre `caja: list[dict]` — modelo actual: `name, brand, serial, location` (requeridos), `status: str \| None = None`, `assigned_to: str \| None = None` (Phase 1, Sessions 03–06 + refuerzo) — S07 siguiente |
 | Database (PostgreSQL) | ⬜ Not started (Phase 3) |
 | Code quality | ⬜ Not started (Phase 4) |
 | CI (quality only) | ⬜ Not started (Phase 4) |

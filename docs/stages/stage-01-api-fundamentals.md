@@ -113,8 +113,8 @@ cannot diagnose why a request fails in production.
 
 > El estudiante pidió más práctica Pydantic con la misma estructura (`main.py` → Swagger POST bueno/malo → `GET /items/lista` → `FASTAPI.txt`). 1 concepto a la vez, solo con lo ya visto (str requerido, `= default`, `| None = None` de `FASTAPI 1.txt`). Sin `min_length/gt` (eso es S07).
 
-- [ ] Ej1 — requerido extra `location: str`: agregar a `Item`, probar bueno `201` con `location` + malo sin `location` `422 missing loc body,location`, verificar en `GET /items/lista`
-- [ ] Ej2 — opcional-null `assigned_to: str | None = None`: agregar a `Item`, probar sin campo → `null`, con `"assigned_to":"Erick"` → valor, verificar en `GET /items/lista`
+- [x] Ej1 — requerido extra `location: str`: agregar a `Item`, probar bueno `201` con `location` + malo sin `location` `422 missing loc body,location`, verificar en `GET /items/lista`
+- [x] Ej2 — opcional-null `assigned_to: str | None = None`: agregar a `Item`, probar sin campo → `null`, con `"assigned_to":"Erick"` → valor, verificar en `GET /items/lista`
 
 ### Session 07 — Path + query + body together; validation and 422
 
@@ -220,6 +220,13 @@ cannot diagnose why a request fails in production.
 - Tested in Swagger: POST creates item, GET /items/lista shows the list.
 - Understood Pydantic: validates data automatically before your code runs, returns 422 if invalid.
 - Fixed route ordering: `/items/lista` must come before `/items/{item_id}`.
+- Session 06 refuerzo (2026-09-29) — Ej1: added required `location: str` → `201` with it,
+  `422 type:missing loc ["body","location"]` without it (function never ran, caja untouched).
+- Session 06 refuerzo — Ej2: added `assigned_to: str | None = None` → omitted field returns
+  `null`, sending `"Erick"` returns the value; both `201`.
+- Extra: changed `status : str = 'active'` → `status : str | None = None` after guided
+  reasoning → `"status": null` now returns `201` (was `422`), `"inactive"` still works,
+  and a client that omits `status` now receives `null` instead of `active`.
 
 ### How it works / why
 
@@ -323,6 +330,8 @@ difference is who asks (browser vs program) and what they get (HTML vs JSON), ch
 
 **Session 06:** El request body existe para enviar datos estructurados (JSON) de forma segura, sin límite de tamaño y con jerarquía. Pydantic es el inspector que valida automáticamente que los campos obligatorios estén presentes y sean del tipo correcto; si falta algo o está mal, devuelve `422` antes de que la función se ejecute. La sintaxis es: `class Item(BaseModel)` con campos tipados, y el endpoint recibe el modelo como parámetro (`item: Item`). FastAPI se encarga de convertir el JSON a un objeto Pydantic, validarlo, y entregarlo a tu función. El orden de las rutas importa: las rutas estáticas (`/items/lista`) deben definirse ANTES que las rutas con parámetros (`/items/{item_id}`), de lo contrario FastAPI intentará emparejar "lista" como un `item_id`.
 
+**S06 refuerzo (2026-09-29):** Una línea de modelo tiene dos perillas independientes: el **tipo** (qué se acepta cuando el cliente manda el campo) y el **default** (qué queda guardado cuando no lo manda). Si el campo se **omite**, entra el default **sin validarlo**; si se **manda**, se valida contra el tipo — por eso `status: str = 'active'` acepta omitirlo (trae `active`) pero rechaza `null` con `422`, mientras que `str | None` hace que `null` sea un valor legal. Regla para revisar antes de adivinar un código de estado: **mirar primero qué campos son obligatorios** (no tienen `=`) — en el recap respondí `201` sin notar que faltaba `serial`. Y lección final: **cambiar un default le cambia la respuesta a todos los clientes que no mandan ese campo** — al pasar `status` de `= 'active'` a `= None`, el cliente que nunca lo mandó pasó de recibir `"active"` a recibir `"null"` sin haber tocado nada.
+
 **Analogía del Restaurante (Path, Query, Body):**
 - **Path** = La dirección del restaurante (`/ViaMontana/RestauranteBonito/Mesa5`). Te dice **a dónde vas**. Sin ella, no llegas.
 - **Query** = Instrucciones extras al mesero (`/Mesa5?velocidad=rápido&porcion=grande`). Son **extras opcionales** — si no los pones, te atienden con valores normales.
@@ -342,7 +351,10 @@ difference is who asks (browser vs program) and what they get (HTML vs JSON), ch
 - [x] Screenshots saved in `screenshots/stage-01/` — `01-swagger-three-get-endpoints.png` y `02-422-item-id-not-integer.png` (Swagger de `/items/{item_id}` y error `422` de `/items/abc`) — 2026-08-24
 - [x] Session log entry appended (2026-09-10 — Session 06 real validada por explicación)
 - [x] Execution plan updated (Session 06 marked complete 2026-09-10)
+- [x] S06 refuerzo Ej1 + Ej2 validados por evidencia y explicación (2026-09-29) — evidencia en `API.txt` (Desktop): `422 missing ["body","location"]`, `201` con `assigned_to` null/valor, cambio `status → str | None = None`
+- [x] Session log entry appended (2026-09-29 — recap 3/3 con correcciones + S06 refuerzo)
+- [x] Execution plan updated (S06 refuerzo marked complete 2026-09-29)
 - [ ] ADR written (if a decision was made) — none this session
-- [ ] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab `develop` — **solo falta esto:** `main.py` (S06) y README ya están pusheados (`374bb3e`, `0d84139`, verificado 2026-09-29); pendiente copiar los docs de S06 al repo y commitear (push del estudiante)
+- [ ] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab `develop` — pendiente de commit/push del estudiante (docs de S06 refuerzo 2026-09-29)
 
 > 🚀 **Next:** Session 07 — Path + query + body together; validation and 422.

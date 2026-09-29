@@ -57,6 +57,51 @@ work instantly. The mentor reviews the latest entry at the start of every sessio
 
 ---
 
+## 2026-09-29 — S06 refuerzo (Ej1 `location` + Ej2 `assigned_to` + `status → str | None = None`)
+
+**Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — S06 refuerzo complete / Session 07 next
+
+**Daily recap (start of day):**
+- Passed ✅ 3/3 con 2 correcciones — Q1 body sin `serial`: respondió `201` sin mirar los campos requeridos → corregido (`422`, Pydantic decide antes de la función, `caja` intacta); Q1 follow-up ✅ (la función no corre, `GET /items/lista` no cambia). Q2 path vs query: respuesta inicial débil ("ruta absoluta" / "atributo de la caja") → reformulada sobre omitir cada parámetro → ✅ (`{item_id}` obligatorio = dirección, `?q=` opcional = filtro).
+
+**Deck (pending questions for next sessions):**
+- Re-preguntar distinción **`| None` (tipo, acepta null cuando se manda) vs `= None` (default, qué llega si se omite)** — 1 repetición espaciada, S07.
+- Revisar siempre los campos requeridos del modelo (sin `=`) antes de adevinar el código de estado.
+- Cambio de default = cambio de respuesta para todos los clientes que omiten el campo (concepto visto, reforzar).
+- PUT vs PATCH, 201/204 en real — Fase 2.
+
+**Worked on:**
+- Pre-session: revisión de todo el folder de memoria + corrección de contradicciones de estado (Stage 01 status, roadmap, spec, environment DoD, README layout, screenshots renombrados); validación git (`origin/develop..develop` vacío); sync de docs S06 al repo; fast-forward de `main` local; el estudiante hizo push + PR #18 (mergeado → `a07f772`).
+- Ej1 `location: str` (obligatorio, sin default) → bueno `201` con `"location":"Oficina 3"`; malo sin `location` → `422` `type:missing` `loc ["body","location"]` `msg "Field required"`, `input` muestra el body recibido; `caja` no se tocó → `GET /items/lista` solo el bueno.
+- Ej2 `assigned_to: str | None = None` → sin campo `201` `"assigned_to":null`; con `"Erick"` `201` valor.
+- Cierre guiado (no se dio la respuesta): `status : str = 'active'` → `status : str | None = None` → `"status": null` ahora `201` (antes `422`), `"inactive"` sigue OK, y el cliente que **omite** `status` pasó de recibir `active` a `null`.
+
+**Concepts learned / reinforced:**
+- Dos perillas independientes en una línea de modelo: **tipo** (qué se acepta al enviarse) y **default** (qué llega si se omite).
+- Omitir → entra el default **sin validar**; enviar → se valida contra el tipo (`str` rechaza `null`, `str | None` lo acepta).
+- `422 type:missing` vs `json_invalid`; `loc` te dice exactamente el campo.
+- Cambiar un default le cambia la respuesta a los clientes que no mandan ese campo.
+
+**Commands / tools used:**
+- `uvicorn main:app --port 8000 --reload` (ya encendido) — probar en vivo
+- Swagger `POST /items/` + `GET /items/lista` — evidencia guardada en `C:\Users\XPC\Desktop\API.txt`
+- `git fetch` + `git status` / `git log` — validar estado de ramas y remotos (solo lectura)
+
+**Errors encountered:**
+- Recap: respondió `201` sin notar `serial` faltante → reformulada, entendió que el 422 es antes de la función.
+- Recap: path/query confundidos → reformulada sobre omisión de cada parámetro → correcto.
+- Comprensión parcial de `str | None = None`: identificó la línea pero mezcló las dos perillas → aclarado en el cierre (`| None` = tipo, `= None` = default); queda en el deck.
+
+**Questions still open:**
+- Repaso de `| None` vs `= None` (deck, S07). Resto: ninguno.
+
+**Next session (target):**
+- Stage 01 — Session 07: Path + query + body together; validation and 422; constraints (`min_length`, `gt`).
+
+**Commit / push:** pendiente del estudiante — docs de hoy (`execution-plan`, `session-log`, `stage-01`, `learning-roadmap`) sincronizados a `C:\API-Learning-Lab`; sugerido: `docs(stage-01): S06 refuerzo complete` → `git push origin develop` (GitHub + GitLab) y PR a `main` si aplica.
+
+---
+
 ## 2026-09-10 — Session 06 real (POST + Body + Pydantic, 1 concepto a la vez)
 
 **Phase / Stage:** Phase 1 — API Fundamentals · Stage 01 — Session 06 complete / Session 07 next
