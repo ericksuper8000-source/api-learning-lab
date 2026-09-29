@@ -96,7 +96,7 @@ the phase is **not** complete — regardless of how many checkboxes are ticked.
 | Phase | Self-assessment | Mentor validation | Date |
 |---|---|---|---|
 | 0 Planning | ✅ | ✅ | 2026-08-10 |
-| 1 API Fundamentals | 🔄 In progress (Session 06/12) | ⬜ | 2026-08-26 |
+| 1 API Fundamentals | 🔄 In progress (Session 06/12) | ⬜ | 2026-09-10 |
 | 2 Real Project | ⬜ | ⬜ | |
 | 3 PostgreSQL | ⬜ | ⬜ | |
 | 4 Code Quality & CI | ⬜ | ⬜ | |

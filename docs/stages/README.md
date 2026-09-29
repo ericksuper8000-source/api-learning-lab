@@ -10,7 +10,7 @@
 
 | Stage | Title | Phase | Status |
 |---|---|---|---|
-| 01 | [API Fundamentals](stage-01-api-fundamentals.md) | 1 | ⬜ Pending |
+| 01 | [API Fundamentals](stage-01-api-fundamentals.md) | 1 | 🔄 In progress (Session 06/12) |
 | 02 | [Real Project — IT Assets Inventory CRUD](stage-02-real-project-crud.md) | 2 | ⬜ Pending |
 | 03 | [PostgreSQL Persistence](stage-03-postgresql-persistence.md) | 3 | ⬜ Pending |
 | 04 | [Code Quality & CI](stage-04-code-quality-ci.md) | 4 | ⬜ Pending |

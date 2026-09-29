@@ -31,14 +31,14 @@ stages — it tells you exactly where the project is and what to do next.
 > **This block is updated at the end of every session.**
 
 - **Current phase:** Phase 1 — API Fundamentals 🔄 (in progress)
-- **Current stage / task:** Stage 01 — Session 05 complete: Query parameters (`?q=...`) + path+query combined. POST visto sin Pydantic — **Next: Session 06 — POST + JSON body + Pydantic models (`class Item(BaseModel)`)**
+- **Current stage / task:** Stage 01 — Session 06 complete: POST + JSON body + Pydantic (`class Item` con `name, brand, serial, status='active'`, `caja: list[dict]`, `model_dump()`, `201/422`, `GET /items/lista`) — **Next: S06 refuerzo (2 ejercicios Pydantic, pedido 2026-09-10) → luego Session 07**
 - **Phases 2–5:** ⬜ Pending
-- **Last completed item:** Phase 1 — Session 05 (Query parameters; path+query) ✅ — POST sin Pydantic visto (Pydantic pendiente)
-- **Daily recap status:** Protocol refined 2026-08-11 — recap covers ONLY the technical syllabus (API/HTTP/FastAPI/PostgreSQL/etc.), never Git/SSH (from the other project). See `AGENTS.md`.
-- **Next session target:** Stage 01 — Session 06: POST + JSON body + Pydantic models (dict → model)
-- **Blockers / open questions:** Pydantic pendiente de validar — no avanzar a S07 hasta que S06 esté entendido.
-- **Last session:** 2026-09-08 — Live Session (Recap S01–S05 3/3 ✅ + S06 intro Body/Pydantic + FASTAPI 1.txt) — POST/Pydantic aún pendiente de validar
-- **Last commit / push:** `7b2ec40` docs: integrate FASTAPI 1.txt + `cfdecad` fix(main) básico — pushed 2026-09-08 to GitHub ✅ GitLab ✅ (`develop`) — **cambios de hoy (2026-09-08 live session) pendientes de commit/push (bloqueado por estudiante)**
+- **Last completed item:** Phase 1 — Session 06 (POST + Body + Pydantic) ✅ — 1 concepto a la vez desde cero (dict → Item → 201 → caja → lista), validado por explicación del estudiante
+- **Daily recap status:** Protocol refined 2026-08-11 — recap covers ONLY the technical syllabus (API/HTTP/FastAPI/PostgreSQL/etc.), never Git/SSH (from the other project). See `AGENTS.md`. 2026-09-10 recap 3/3 ✅ (path vs query, Body por límite+seguridad, Uvicorn vs FastAPI — corrección puerto 22→8000).
+- **Next session target:** S06 refuerzo — Ej1 `location: str` requerido (201 + 422 missing) → Ej2 `assigned_to: str | None = None` opcional-null (sin campo → null, con campo → valor) → luego Stage 01 — Session 07
+- **Blockers / open questions:** Ninguno — S06 validado, refuerzo pedido por estudiante para soltar la mano antes de S07. Regla desde 2026-09-10: S06 y futuras construyen desde cero, 1 concepto a la vez, solo asume lo practicado.
+- **Last session:** 2026-09-10 — S06 real (Recap 3/3 ✅ + POST dict→Pydantic + 201/422 + caja/lista + fix orden rutas + fix caja vs items) — S06 validado por explicación
+- **Last commit / push:** `0d84139` develop commit README updated + `374bb3e` develop commit 09-10-26 (`main.py` S06) — pushed a GitHub ✅ GitLab ✅ (`develop`) — **verificado 2026-09-29: `origin/develop..develop` vacío, nada pendiente de push. FALTA solo sincronizar los docs de S06 (`session-log`, `execution-plan`, `stage-01`) de la memoria → `C:\API-Learning-Lab\docs/` y commitear (último commit de docs: `ede141e`, 2026-09-08).**
 
 ---
 
@@ -50,7 +50,7 @@ stages — it tells you exactly where the project is and what to do next.
 | Plan | ☒ Defined |
 | Zero-cost policy | ☒ Active (ADR-0004) |
 | Version control | ☒ Live (repo `C:\API-Learning-Lab`, ramas `main` + `develop`) |
-| Application (FastAPI) | 🔄 In progress — `main.py` con GET `/`, `/hello`, `/items/{id}`, `/items/?q=` y POST básico sin body (Phase 1, Sessions 03–05) — Body/Pydantic y list/dict pendientes S06 |
+| Application (FastAPI) | 🔄 In progress — `main.py` con GET `/`, `/hello`, `/items/{id}`, `/items/?q=`, POST `/items/` con `Item` (Pydantic) `201/422` y `GET /items/lista` sobre `caja: list[dict]` (Phase 1, Sessions 03–06) — S07 siguiente |
 | Database (PostgreSQL) | ⬜ Not started (Phase 3) |
 | Code quality | ⬜ Not started (Phase 4) |
 | CI (quality only) | ⬜ Not started (Phase 4) |
@@ -111,7 +111,7 @@ stages — it tells you exactly where the project is and what to do next.
 - [x] Session 03 — Environment: venv, install fastapi + uvicorn + requests, first app, run it
 - [x] Session 04 — GET endpoints + path parameters
 - [x] Session 05 — Query parameters; combining path + query
-- [ ] Session 06 — POST + JSON body + Pydantic models (dict → model) — POST sin Pydantic visto, Pydantic pendiente
+- [x] Session 06 — POST + JSON body + Pydantic models (dict → model) — validado 2026-09-10 (1 concepto a la vez, explicación del estudiante)
 - [ ] Session 07 — Path + query + body together; automatic validation and `422`
 - [ ] Session 08 — HTTP status codes in the API (200, 201, 204, 404, 422); response models
 - [ ] Session 09 — The `requests` library: client scripts that consume the API
@@ -119,7 +119,7 @@ stages — it tells you exactly where the project is and what to do next.
 - [ ] Session 11 — Lab: small in-memory list API with GET + POST
 - [ ] Session 12 — Phase 1 checkpoint: explain back, document, evidence
 
-**Status:** ⬜ Pending
+**Status:** 🔄 In progress (Sessions 01–06 of 12 complete — last validated 2026-09-10)
 
 ---
 

@@ -97,6 +97,8 @@ GitHub, GitLab, and local execution. Nothing is paid, nothing is provisioned in 
 │   └── stages/                   # One document per stage
 ├── screenshots/                  # Evidence, one folder per stage
 ├── scripts/                      # Scripts created during stages
+├── pyproject.toml                # Tool config (Black, Ruff, Mypy, Bandit, Pytest)
+├── requirements.txt              # Pinned runtime deps (fastapi, uvicorn)
 └── .gitignore
 ```
 

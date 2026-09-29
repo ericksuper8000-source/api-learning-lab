@@ -44,10 +44,10 @@ cannot diagnose why a request fails in production.
 
 ## Pre-flight
 
-- [ ] You can answer: "What problem does an API solve?" in one sentence.
-- [ ] You know the difference between client and server.
-- [ ] Git works and the repo `C:\API-Learning-Lab` is pushed to GitHub + GitLab.
-- [ ] Python 3.11 is confirmed as the project standard (via `py -3.11 --version`).
+- [x] You can answer: "What problem does an API solve?" in one sentence.
+- [x] You know the difference between client and server.
+- [x] Git works and the repo `C:\API-Learning-Lab` is pushed to GitHub + GitLab.
+- [x] Python 3.11 is confirmed as the project standard (via `py -3.11 --version`).
 
 > ⚠️ **Rule for this stage:** no ORM, no database, no Docker. Small endpoints and full
 > understanding only.
@@ -102,12 +102,19 @@ cannot diagnose why a request fails in production.
 
 ### Session 06 — POST + JSON body + Pydantic
 
-- [ ] Explain what a request body is and when it is used (why: you cannot put complex data in a URL)
-- [ ] Create a Pydantic model: `class Item(BaseModel)` with typed fields
-- [ ] Create `@app.post("/items/")` that receives the model as parameter
-- [ ] Send JSON from Swagger and verify the API echoes it back
-- [ ] Explain: JSON in → Pydantic validates → dict → response
-- [ ] Compare: dictionary vs Pydantic model (why Pydantic validates, a dict does not)
+- [x] Explain what a request body is and when it is used (why: you cannot put complex data in a URL)
+- [x] Create a Pydantic model: `class Item(BaseModel)` with typed fields
+- [x] Create `@app.post("/items/")` that receives the model as parameter
+- [x] Send JSON from Swagger and verify the API echoes it back
+- [x] Explain: JSON in → Pydantic validates → dict → response
+- [x] Compare: dictionary vs Pydantic model (why Pydantic validates, a dict does not)
+
+### S06 refuerzo — 2 ejercicios extra (pedido 2026-09-10, antes de S07)
+
+> El estudiante pidió más práctica Pydantic con la misma estructura (`main.py` → Swagger POST bueno/malo → `GET /items/lista` → `FASTAPI.txt`). 1 concepto a la vez, solo con lo ya visto (str requerido, `= default`, `| None = None` de `FASTAPI 1.txt`). Sin `min_length/gt` (eso es S07).
+
+- [ ] Ej1 — requerido extra `location: str`: agregar a `Item`, probar bueno `201` con `location` + malo sin `location` `422 missing loc body,location`, verificar en `GET /items/lista`
+- [ ] Ej2 — opcional-null `assigned_to: str | None = None`: agregar a `Item`, probar sin campo → `null`, con `"assigned_to":"Erick"` → valor, verificar en `GET /items/lista`
 
 ### Session 07 — Path + query + body together; validation and 422
 
@@ -332,10 +339,10 @@ difference is who asks (browser vs program) and what they get (HTML vs JSON), ch
 - [x] Answers drafted by the student (`Respuesta.txt` → transferred here by the mentor)
 - [x] Session log entry appended (2026-08-13)
 - [x] Execution plan updated (Sessions 01 + 02 + 03 marked complete)
-- [x] Screenshots saved in `screenshots/stage-01/` (Swagger de `/items/{item_id}` y error `422` de `/items/abc`) — 2026-08-24
-- [ ] Session log entry appended (2026-08-26 — Session 06) — pendiente validación Pydantic (corregido 2026-09-08)
-- [ ] Execution plan updated (Session 06 marked complete) — revertido 2026-09-08: Pydantic pendiente
+- [x] Screenshots saved in `screenshots/stage-01/` — `01-swagger-three-get-endpoints.png` y `02-422-item-id-not-integer.png` (Swagger de `/items/{item_id}` y error `422` de `/items/abc`) — 2026-08-24
+- [x] Session log entry appended (2026-09-10 — Session 06 real validada por explicación)
+- [x] Execution plan updated (Session 06 marked complete 2026-09-10)
 - [ ] ADR written (if a decision was made) — none this session
-- [x] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab `develop` (`main` también alineada) — 2026-08-24 ✅
+- [ ] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab `develop` — **solo falta esto:** `main.py` (S06) y README ya están pusheados (`374bb3e`, `0d84139`, verificado 2026-09-29); pendiente copiar los docs de S06 al repo y commitear (push del estudiante)
 
-> 🚀 **Next:** Session 06 — POST + JSON body + Pydantic models (dict → model) — Pydantic pendiente.
+> 🚀 **Next:** Session 07 — Path + query + body together; validation and 422.

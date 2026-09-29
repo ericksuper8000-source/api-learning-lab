@@ -99,7 +99,9 @@ The same inventory API evolves across the entire journey. No throwaway projects.
 
 ## 6. Initial State
 
-Phase 0 (Planning & Documentation Architecture) is being completed with this document set.
+Phase 0 (Planning & Documentation Architecture) was completed on 2026-08-10 with this
+document set plus the repo bootstrap (`C:\API-Learning-Lab`, GitHub + GitLab, SSH auth).
+Phase 1 (API Fundamentals) is in progress — Session 06 complete as of 2026-09-10.
 The student already has basic exposure to FastAPI from prior practice projects
 (`C:\FastAPI\vtasks\ProyectoFastAPI1` and `ProyectoFastAPI2`), but nothing is assumed:
 Phase 1 rebuilds the fundamentals from the mental model upward.
@@ -188,8 +190,8 @@ Hand-off: "ready for a deployment pipeline" (CICD project)
 
 | # | Phase | Description | Status |
 |---|---|---|---|
-| 0 | Planning | Documentation architecture, methodology, decisions | 🔄 |
-| 1 | API Fundamentals | HTTP, Uvicorn, FastAPI, GET/POST, Path/Query/Body, Swagger | ⬜ |
+| 0 | Planning | Documentation architecture, methodology, decisions | ✅ Complete (2026-08-10) |
+| 1 | API Fundamentals | HTTP, Uvicorn, FastAPI, GET/POST, Path/Query/Body, Swagger | 🔄 In progress (Session 06/12) |
 | 2 | Real Project | IT Assets Inventory CRUD, organization, validation, errors | ⬜ |
 | 3 | PostgreSQL | Databases, SQL, connection, persistence | ⬜ |
 | 4 | Code Quality & CI | Pytest, Ruff, Black, Mypy, Bandit, pip-audit, CI | ⬜ |
