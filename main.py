@@ -15,7 +15,9 @@ class Item(BaseModel):
     name : str
     brand : str
     serial : str
-    status : str = 'active'
+    status : str | None = None
+    location : str
+    assigned_to : str | None = None
 
 caja : list[dict] = []
 
