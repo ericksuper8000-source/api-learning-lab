@@ -355,6 +355,6 @@ difference is who asks (browser vs program) and what they get (HTML vs JSON), ch
 - [x] Session log entry appended (2026-09-29 — recap 3/3 con correcciones + S06 refuerzo)
 - [x] Execution plan updated (S06 refuerzo marked complete 2026-09-29)
 - [ ] ADR written (if a decision was made) — none this session
-- [ ] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab `develop` — pendiente de commit/push del estudiante (docs de S06 refuerzo 2026-09-29)
+- [x] Memory folder synced to `C:\API-Learning-Lab`, committed and pushed to GitHub + GitLab `develop` — `d1f1a13` Sesion de Refuerzo 09/29/2026 (push verificado 2026-09-29)
 
 > 🚀 **Next:** Session 07 — Path + query + body together; validation and 422.
