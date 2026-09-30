@@ -38,7 +38,7 @@ stages — it tells you exactly where the project is and what to do next.
 - **Next session target:** Stage 01 — Session 07 — Path + query + body together; validation and `422`; constraints (`min_length`, `gt`). Recap arranca con 1 repetición espaciada: `| None` (tipo) vs `= None` (default)
 - **Blockers / open questions:** Ninguno. Regla vigente: S06+ construyen desde cero, 1 concepto a la vez, solo asume lo practicado.
 - **Last session:** 2026-09-29 — S06 refuerzo (recap 3/3 + Ej1 location + Ej2 assigned_to + status `str | None = None`) — cerrado con la lección "cambiar un default cambia la respuesta de los clientes que omiten el campo"
-- **Last commit / push:** `fa468af` docs(stage-01): sync s06 real + fix status coherence → PR #18 mergeado (`a07f772`) — GitHub ✅ GitLab ✅ (`develop` + `main` alineada) — **docs de hoy (S06 refuerzo 2026-09-29) pendientes de commit/push por estudiante**
+- **Last commit / push:** `d1f1a13` Sesion de Refuerzo 09/29/2026 (docs de S06 refuerzo + `main.py` con `location`, `assigned_to`, `status` nullable) — pushed 2026-09-29 a GitHub ✅ GitLab ✅ (`develop`) — verificado: `origin/develop..develop` vacío. `main` local = `origin/main` = `a07f772` (PR #18)
 
 ---
 

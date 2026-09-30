@@ -6,13 +6,13 @@ Visto: GET, POST + Body + Pydantic, path, query, caja/lista + 201/422 (S06 real 
 Siguiente: S06 refuerzo (Ej1 location, Ej2 assigned_to) → S07
 """
 
-from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi import FastAPI, Path
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 
 class Item(BaseModel):
-    name : str
+    name : str = Field(min_length=3)
     brand : str
     serial : str
     status : str | None = None
@@ -55,3 +55,15 @@ def read_items(q: str | None = None):
     if q:
         return {"filtrado_por": q}
     return {"mensaje": "No se envio el filtro"}
+    
+@app.post("/items/{item_id}/revisar")
+def revisar_item(
+    item : Item,
+    item_id : int = Path(gt=0),
+    verbose : bool = False
+):
+    return {
+        "id" : item_id,
+        "verbose" : verbose,
+        "item" : item
+    }
